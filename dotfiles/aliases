@@ -1,0 +1,17 @@
+# Get External IP / Internet Speed
+alias myip="curl https://ipinfo.io/json" # or /ip for plain-text ip
+alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
+
+# Quickly serve the current directory as HTTP
+alias serve='ruby -run -e httpd . -p 8000' # Or python -m SimpleHTTPServer :)
+
+# OCGG
+alias tr='tree -a -I .git' # all files, ignore .git
+alias tra='tree -augD --metafirst -I .git' # more file infos
+alias tr3="tree -L 3 -a -I .git" # 3 levels deep
+
+alias notes="cd ~/shared/notes && nvim ."
+alias todo="cat ~/shared/notes/todo.md"
+alias plugins="~/code/plugins-ruby/app.rb"
+alias xopen="xdg-open"
+alias nvimconf="nvim -c 'cd ~/.config/nvim' -c 'e init.lua'"
