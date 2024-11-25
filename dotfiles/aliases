@@ -12,6 +12,7 @@ alias tr3="tree -L 3 -a -I .git" # 3 levels deep
 
 alias notes="cd ~/shared/notes && nvim ."
 alias todo="cat ~/shared/notes/todo.md"
+alias todoedit="nvim -c 'cd ~/shared/notes' -c 'e todo.md'"
 alias plugins="~/code/plugins-ruby/app.rb"
 alias xopen="xdg-open"
 alias nvimconf="nvim -c 'cd ~/.config/nvim' -c 'e init.lua'"
