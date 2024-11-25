@@ -1,34 +1,46 @@
 return {
-  'williamboman/mason.nvim',
-  dependencies = {
-    'williamboman/mason-lspconfig.nvim',
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
-  },
-  config = function()
-    require('mason').setup()
+	"williamboman/mason.nvim",
+	dependencies = {
+		"williamboman/mason-lspconfig.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+	},
+	config = function()
+		require("mason").setup()
 
-    require('mason-lspconfig').setup {
-      automatic_installation = true,
-      ensure_installed = {
-        'cssls',
-        'eslint',
-        'html',
-        'jsonls',
-        'ts_ls',
-        'pyright',
-        'tailwindcss',
-      },
-    }
+		require("mason-lspconfig").setup({
+			automatic_installation = true,
+			ensure_installed = {
+				"bashls",
+				"cssls",
+				"emmet_language_server",
+				"eslint",
+				"html",
+				"jsonls",
+				"lua_ls",
+				"pyright",
+				"rubocop",
+				"ruby_lsp",
+			},
+		})
 
-    require('mason-tool-installer').setup {
-      ensure_installed = {
-        'prettier',
-        'stylua', -- lua formatter
-        'isort', -- python formatter
-        'black', -- python formatter
-        'pylint',
-        'eslint_d',
-      },
-    }
-  end,
+		require("mason-tool-installer").setup({
+			ensure_installed = {
+				-- linters
+				"erb-lint",
+				"eslint_d",
+				"htmlhint",
+				"pylint",
+				"shellcheck",
+				"stylelint",
+				-- formatters
+				"beautysh", -- bash
+				"black", -- python
+				"erb-formatter",
+				"htmlbeautifier",
+				"isort", -- python
+				"prettier",
+				"stylua",
+			},
+		})
+	end,
 }
