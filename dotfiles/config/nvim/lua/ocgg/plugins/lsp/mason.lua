@@ -17,6 +17,7 @@ return {
 				"html",
 				"jsonls",
 				"lua_ls",
+				"marksman", -- markdown
 				"pyright",
 				"rubocop",
 				"ruby_lsp",
@@ -29,6 +30,7 @@ return {
 				"erb-lint",
 				"eslint_d",
 				"htmlhint",
+				"markdownlint",
 				"pylint",
 				"shellcheck",
 				"stylelint",
