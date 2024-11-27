@@ -38,11 +38,30 @@ return {
 				})
 			end,
 			-- Next, you can provide a dedicated handler for specific servers.
-			-- For example, a handler override for the `rust_analyzer`:
 			-- ["ruby_lsp"] = function()
-			-- 	nvim_lsp["ruby_lsp"].setup({
+			-- 	nvim_lsp.ruby_lsp.setup({
 			-- 		on_attach = on_attach,
 			-- 		capabilities = capabilities,
+			-- 		mason = false,
+			-- 		cmd = { vim.fn.expand("~/.rbenv/shims/ruby-lsp") },
+			-- 		-- cmd = { vim.fn.systemlist("which ruby-lsp")[1] },
+			-- 	})
+			-- end,
+			-- ["rubocop"] = function()
+			-- 	nvim_lsp.rubocop.setup({
+			-- 		on_attach = on_attach,
+			-- 		capabilities = capabilities,
+			-- 		mason = false,
+			-- 		-- cmd = { vim.fn.systemlist("which rubocop")[1] },
+			-- 		cmd = { vim.fn.expand("~/.rbenv/shims/rubocop") },
+			-- 	})
+			-- end,
+			-- ["emmet_language_server"] = function()
+			-- 	nvim_lsp.emmet_language_server.setup({
+			-- 		on_attach = on_attach,
+			-- 		capabilities = capabilities,
+			-- 		-- mason = false,
+			-- 		-- cmd = { vim.fn.systemlist("which emmet-language-server")[1] },
 			-- 	})
 			-- end,
 		})
