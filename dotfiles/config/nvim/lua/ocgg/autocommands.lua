@@ -31,3 +31,15 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = vim.api.nvim_create_augroup("WrapText", { clear = true }),
 	pattern = "*",
 })
+
+-- set tabstop & shiftwidth for specific filetypes
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function()
+		if vim.bo.filetype == "ruby" then
+			vim.bo.tabstop = 2
+			vim.bo.shiftwidth = 2
+		end
+	end,
+	group = vim.api.nvim_create_augroup("TabStopShiftWidth", { clear = true }),
+	pattern = "*",
+})
