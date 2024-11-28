@@ -43,8 +43,7 @@ return {
 			-- 		on_attach = on_attach,
 			-- 		capabilities = capabilities,
 			-- 		mason = false,
-			-- 		cmd = { vim.fn.expand("~/.rbenv/shims/ruby-lsp") },
-			-- 		-- cmd = { vim.fn.systemlist("which ruby-lsp")[1] },
+			-- 		cmd = { "ruby-lsp" },
 			-- 	})
 			-- end,
 			-- ["rubocop"] = function()

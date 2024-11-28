@@ -11,7 +11,7 @@ return {
 			build = "make install_jsregexp",
 		},
 		"rafamadriz/friendly-snippets",
-		"saadparwaiz1/cmp_luasnip", -- necessary for luasnip cmp source
+		"saadparwaiz1/cmp_luasnip", -- required for luasnip cmp source
 		-- "onsails/lspkind.nvim", -- vs-code like pictograms
 	},
 	config = function()
