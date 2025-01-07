@@ -56,6 +56,8 @@ export PYTHONBREAKPOINT=ipdb.set_trace
 
 export PATH=$PATH:~/code/ftrack
 export PATH=$PATH:~/.local/bin
+export GOBIN=$HOME/go/bin/
+export PATH=$PATH:$GOBIN
 # avoid __pycache__ folder generation in python project folders
 export PYTHONPYCACHEPREFIX=/tmp/python/__pycache__
 
