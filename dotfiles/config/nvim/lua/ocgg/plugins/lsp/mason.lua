@@ -19,7 +19,7 @@ return {
 				"lua_ls",
 				"marksman", -- markdown
 				"pyright",
-				"rubocop",
+                "standardrb",
 				"ruby_lsp",
 			},
 		})
