@@ -1,3 +1,16 @@
+[general]
+live_config_reload = true
+working_directory = "/home/olivier/code/"
+
+[window]
+decorations = 'None'
+startup_mode = "Maximized"
+# opacity = 0.9
+
+[colors.primary]
+background = "0x1a1a1a"
+foreground = "0xc0caf5"
+
 [[colors.indexed_colors]]
 color = "0xff9e64"
 index = 16
@@ -26,12 +39,8 @@ red = "0xf7768e"
 white = "0xa9b1d6"
 yellow = "0xe0af68"
 
-[colors.primary]
-background = "0x1a1b26"
-foreground = "0xc0caf5"
-
 [font]
-size = 12.0
+size = 13.0
 
 [font.bold]
 family = "Hack Nerd Font"
@@ -48,6 +57,3 @@ style = "Italic"
 [font.normal]
 family = "Hack Nerd Font"
 style = "Regular"
-
-[window]
-decorations = 'None'
