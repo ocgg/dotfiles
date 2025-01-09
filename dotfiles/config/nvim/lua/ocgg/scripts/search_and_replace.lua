@@ -49,7 +49,7 @@ function M.replace()
 	local pattern = v_or_V and get_visual_selection() or vim.fn.expand("<cword>")
 	-- type the substitution command & place the cursor
 	-- TODO: IGNORE KEYCODES LIKE <CR> OR <ESC> (test this line)
-	vim.api.nvim_input("<Esc>:%s/" .. pattern .. "//g<left><left>")
+	vim.api.nvim_input("<Esc>:%s/\\(" .. pattern .. "\\)//g<left><left>")
 end
 
 return M
