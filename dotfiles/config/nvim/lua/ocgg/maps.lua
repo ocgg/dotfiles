@@ -49,5 +49,12 @@ map("x", "<A-K>", ":m '<-2<CR>gv=gv", "Move line/block up")
 map("n", "<A-J>", ":m .+1<CR>==", "Move line down")
 map("n", "<A-K>", ":m .-2<CR>==", "Move line up")
 
+-- Alt+Shift+number for tab selection
+-- map("n", "<A-1>", "1gt", "Go to tab 1")
+-- map("n", "<C-A>2", "2gt", "Go to tab 2")
+-- map("n", "<C-A>3", "3gt", "Go to tab 3")
+-- map("n", "<C-A>4", "4gt", "Go to tab 4")
+-- map("n", "<C-A>5", "5gt", "Go to tab 5")
+
 -- Search and Replace
 map({ "n", "v" }, "<leader>sr", require("ocgg.scripts.search_and_replace").replace, "Search and Replace")
