@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # FUNCTIONS ###################################################################
 
@@ -41,10 +41,19 @@ for name in $(basename -a dotfiles/*); do
     symlink "$file_path" "$link_path"
 done
 
-# Symlink folders in dotfiles/.config/
+# Symlink folders in dotfiles/config/
 for name in $(basename -a dotfiles/config/*); do
     link_path="$HOME/.config/$name"
     file_path="$PWD/dotfiles/config/$name"
+    backup "$link_path" "$file_path"
+    symlink "$file_path" "$link_path"
+done
+
+# Symlink only files in specific_files/**/*, not their entire directory
+specific_files=$(find specific_files -type f -printf '%P\n')
+for name in $specific_files; do
+    link_path="$HOME/.$name"
+    file_path="$PWD/specific_files/$name"
     backup "$link_path" "$file_path"
     symlink "$file_path" "$link_path"
 done
