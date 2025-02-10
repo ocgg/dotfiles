@@ -9,7 +9,7 @@ return {
             keymap = {
                 jump_prev = '[[',
                 jump_next = ']]',
-                accept = '<A-l>',
+                accept = '<A-m>',
                 refresh = 'gr',
                 open = '<M-CR>',
             },
@@ -24,7 +24,7 @@ return {
             hide_during_completion = true,
             debounce = 200,
             keymap = {
-                accept = '<A-l>',
+                accept = '<A-m>',
                 accept_word = '<A-$>',
                 accept_line = false,
                 next = '<A-*>',

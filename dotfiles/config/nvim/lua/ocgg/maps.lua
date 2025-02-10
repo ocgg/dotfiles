@@ -6,9 +6,6 @@ end
 
 map("n", "<leader>n", "<cmd>NvimTreeToggle<cr>", "Toggle NvimTree")
 
--- Exit insert mode
-map("i", "jk", "<ESC>")
-
 -- Resize Windows
 map("n", "<C-Left>", "<C-w><")
 map("n", "<C-Right>", "<C-w>>")
@@ -35,11 +32,15 @@ map("n", "<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
--- Alt+j/k to move 5 lines up/down
+-- INSERT MODE NAVIGATION
+map("i", "<A-j>", "<Down>", "Move down")
+map("i", "<A-k>", "<Up>", "Move up")
+map("i", "<A-h>", "<Left>", "Move left")
+map("i", "<A-l>", "<Right>", "Move right")
+
+-- NORMAL MODE NAVIGATION
 map("n", "<A-j>", "5jzz", "Move 5 lines down")
 map("n", "<A-k>", "5kzz", "Move 5 lines up")
-
--- Alt+h/l to move 10 characters left/right
 map("n", "<A-h>", "10h", "Move 10 characters left")
 map("n", "<A-l>", "10l", "Move 10 characters right")
 
