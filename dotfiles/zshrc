@@ -65,3 +65,16 @@ export LV2_PATH=/usr/lib64/lv2:~/.lv2
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/home/olivier/.lmstudio/bin"
+
+# find in files wih ripgrep+fzf
+fif() {
+  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+  rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
+}
+
+# Change LS_COLORS to get rid of OMZ's annoying green background in ls & completion
+# export LS_COLORS='fi=00:mi=00:mh=00:ln=01;36:or=01;31:di=01;34:ow=04;01;34:st=34:tw=04;34:'
+# LS_COLORS+='pi=01;33:so=01;33:do=01;33:bd=01;33:cd=01;33:su=01;35:sg=01;35:ca=01;35:ex=01;32'
+LS_COLORS="ow=04;01;34"
+# Use ls colors in completion lists.
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
