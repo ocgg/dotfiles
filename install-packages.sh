@@ -6,6 +6,7 @@ if [[ $dist =~ "Arch Linux" ]]; then
     echo "  # Arch Linux detected. Using pacman"
     echo "  # Installing cli & dev tools"
     sudo pacman -S --needed\
+        base-devel\
         bat\
         fd\
         fzf\
