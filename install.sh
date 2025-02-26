@@ -50,8 +50,7 @@ for name in $(basename -a dotfiles/config/*); do
 done
 
 # Symlink only files in specific_files/**/*, not their entire directory
-specific_files=$(find specific_files -type f -printf '%P\n')
-for name in $specific_files; do
+for name in $(find specific_files -type f -printf '%P\n'); do
     link_path="$HOME/.$name"
     file_path="$PWD/specific_files/$name"
     backup "$link_path" "$file_path"
