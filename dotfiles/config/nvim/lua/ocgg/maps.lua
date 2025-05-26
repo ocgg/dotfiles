@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 
 local function map(mode, lhs, rhs, desc)
-	vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc or rhs })
+    vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc or rhs })
 end
 
 map("n", "<leader>n", "<cmd>NvimTreeToggle<cr>", "Toggle NvimTree")
@@ -59,3 +59,16 @@ map("n", "<A-K>", ":m .-2<CR>==", "Move line up")
 
 -- Search and Replace
 map({ "n", "v" }, "<leader>sr", require("ocgg.scripts.search_and_replace").replace, "Search and Replace")
+
+local function toggle_kanagawa_theme()
+    local current = vim.g.kanagawa_theme
+    local next = current == "wave" and "dragon" or "wave"
+    vim.g.kanagawa_theme = next
+    vim.cmd("colorscheme kanagawa-" .. next)
+end
+
+-- Raccourci <leader>ct pour basculer les thèmes
+vim.keymap.set('n', '<leader>ct', toggle_kanagawa_theme, { desc = "[C]hange [T]heme (kanagawa wave/dragon)" })
+
+map("i", ":w<CR>", "<Esc>:w<CR>", "Save on :w insert mode")
+map("i", ":wa<CR>", "<Esc>:wa<CR>", "Save on :w insert mode")

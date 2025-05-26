@@ -25,16 +25,21 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         local ftype = vim.bo.filetype
-        if ftype == "markdown" or ftype == "text" then
+        if ftype == "markdown"
+            or ftype == "text"
+        then
             vim.wo.wrap = true
         end
         if ftype == "ruby"
             or ftype == "markdown"
-            or ftype == "eruby" then
+            or ftype == "css"
+            or ftype == "javascript"
+            or ftype == "eruby"
+        then
             vim.bo.tabstop = 2
             vim.bo.shiftwidth = 2
         end
     end,
-    group = vim.api.nvim_create_augroup("TabStopShiftWidthAndWrap", { clear = true }),
+    group = vim.api.nvim_create_augroup("TabStopAndShiftWidth", { clear = true }),
     pattern = "*",
 })

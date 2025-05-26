@@ -27,25 +27,31 @@ return {
 
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-        mason_lspconfig.setup_handlers({
+        -- mason_lspconfig.setup_handlers({
             -- The first entry (without a key) will be the default handler
             -- and will be called for each installed server that doesn't have
             -- a dedicated handler.
-            function(server)
-                nvim_lsp[server].setup({
-                    -- on_attach = on_attach,
-                    capabilities = capabilities,
-                })
-            end,
+            -- function(server)
+            --     nvim_lsp[server].setup({
+            --         -- on_attach = on_attach,
+            --         capabilities = capabilities,
+            --     })
+            -- end,
             -- Next, you can provide a dedicated handler for specific servers.
-            ["ruby_lsp"] = function()
-                nvim_lsp.ruby_lsp.setup({
-                    -- on_attach = on_attach,
-                    capabilities = capabilities,
-                    -- mason = false,
-                    cmd = { vim.fn.expand "~/.rbenv/shims/ruby-lsp" },
-                })
-            end,
+            -- ["ruby_lsp"] = function()
+            --     nvim_lsp.ruby_lsp.setup({
+            --         -- on_attach = on_attach,
+            --         capabilities = capabilities,
+            --         -- mason = false,
+            --         cmd = { vim.fn.expand "~/.rbenv/shims/ruby-lsp" },
+            --     })
+            -- end,
+            -- ["tailwindcss"] = function()
+            --     nvim_lsp.tailwindcss.setup({
+            --         capabilities = capabilities,
+            --         cmd = { "sh", "-c", "tailwindcss-language-server", "--stdio" },
+            --     })
+            -- end,
             -- ["stimulus_ls"] = function()
             --     nvim_lsp.stimulus_ls.setup({
             --         -- on_attach = on_attach,
@@ -63,6 +69,6 @@ return {
             -- 		-- cmd = { vim.fn.systemlist("which emmet-language-server")[1] },
             -- 	})
             -- end,
-        })
+        -- })
     end,
 }

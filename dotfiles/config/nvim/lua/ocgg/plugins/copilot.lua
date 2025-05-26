@@ -3,6 +3,13 @@ return {
     cmd = 'Copilot',
     event = 'InsertEnter',
     opts = {
+        server_opts_overrides = {
+            settings = {
+                telemetry = {
+                    telemetryLevel = "off",
+                },
+            },
+        },
         panel = {
             enabled = true,
             auto_refresh = false,
@@ -14,7 +21,7 @@ return {
                 open = '<M-CR>',
             },
             layout = {
-                position = 'right',     -- bottom | top | left | right
+                position = 'right', -- bottom | top | left | right
                 ratio = 0.4,
             },
         },

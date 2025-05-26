@@ -29,6 +29,7 @@ return {
 				"python",
 				"ruby",
 				"rust",
+				"slim",
 				"sql",
 				"typescript",
 				"tsx",
