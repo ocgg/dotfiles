@@ -31,10 +31,11 @@ vim.api.nvim_create_autocmd("FileType", {
             vim.wo.wrap = true
         end
         if ftype == "ruby"
-            or ftype == "markdown"
             or ftype == "css"
-            or ftype == "javascript"
             or ftype == "eruby"
+            or ftype == "javascript"
+            or ftype == "slim"
+            or ftype == "markdown"
         then
             vim.bo.tabstop = 2
             vim.bo.shiftwidth = 2
