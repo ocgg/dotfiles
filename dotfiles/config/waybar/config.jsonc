@@ -9,8 +9,9 @@
     "modules-left": [
         // "sway/mode",
         // "hyprland/submap",
-        // "sway/scratchpad",
+        // "hyprland/scratchpad",
         // "custom/media",
+        "idle_inhibitor",
         "hyprland/workspaces"
     ],
     "modules-center": [
@@ -26,13 +27,13 @@
         // "memory",
         "temperature",
         // "pulseaudio",
-        "wireplumber",
+        "wireplumber#sink",
+        "wireplumber#source",
         // "backlight",
         // "keyboard-state",
-        // "battery",
+        "battery",
         // "battery#bat2",
         "power-profiles-daemon",
-        "idle_inhibitor",
         "hyprland/language",
         "custom/power"
     ],
@@ -93,7 +94,7 @@
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
     "idle_inhibitor": {
-        "min-length": 2,
+        // "min-length": 2,
         "format": "{icon}",
         "format-icons": {
             "activated": "",
@@ -145,31 +146,34 @@
         "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input",
         "critical-threshold": 75,
         "format-critical": "{temperatureC}°C <span font='Font Awesome 6 Free'>{icon}</span>",
-        "format": "<span font='Font Awesome 6 Free'></span> {temperatureC}°C",
+        "format": "<span font='Font Awesome 6 Free'>{icon}</span> {temperatureC}°C",
         "format-icons": ["", "", ""],
         "tooltip": false,
         "on-click": "kitty -e btop"
     },
     "backlight": {
         // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
+        "format": "{icon}",
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
-    // "battery": {
-    //     "states": {
-    //         // "good": 95,
-    //         "warning": 30,
-    //         "critical": 15
-    //     },
-    //     "format": "{capacity}% {icon}",
-    //     "format-full": "{capacity}% {icon}",
-    //     "format-charging": "{capacity}% ",
-    //     "format-plugged": "{capacity}% ",
-    //     "format-alt": "{time} {icon}",
-    //     // "format-good": "", // An empty format will hide the module
-    //     // "format-full": "",
-    //     "format-icons": ["", "", "", "", ""]
-    // },
+    "battery": {
+        "interval": 5,
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 10
+        },
+        "format": "{icon}",
+        // "format-full": "{capacity}% {icon}",
+        "format-charging": "",
+        "format-plugged": "",
+        "format-full": "",
+        // "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        "format-icons": ["", "", "", "", ""],
+        "tooltip-format": "{capacity}%  {time}\nConsumption: {power}W\nHealth: {health}%",
+        "on-click": ""
+    },
     // "battery#bat2": {
     //     "bat": "BAT2"
     // },
@@ -192,37 +196,38 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "interval": 2,
-        "min-length": 10,
+        // "min-length": 10,
         "align": 0,
-        "format-wifi": "<span font='Font Awesome 6 Free'></span> {bandwidthDownOctets}",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "<span font='Font Awesome 6 Free'></span> {signalStrength}%\n\n{essid}\n{ifname}\n{gwaddr}/{cidr}",
+        "format": "<span font='Font Awesome 6 Free'></span> {bandwidthDownOctets}",
+        // "format-wifi": "<span font='Font Awesome 6 Free'></span> {bandwidthDownOctets}",
+        // "format-ethernet": "<span font='Font Awesome 6 Free'></span> {bandwidthDownOctets}",
+        "tooltip-format-ethernet": "<span font='Font Awesome 6 Free'></span> {bandwidthUpOctets}\n{essid}\n{ifname}\n{gwaddr}/{cidr}\n{ipaddr}",
+        "tooltip-format-wifi": "<span font='Font Awesome 6 Free'></span> {bandwidthUpOctets}\n<span font='Font Awesome 6 Free'></span> {frequency} {signalStrength}%\n\n{essid}\n{ifname}\n{gwaddr}/{cidr}",
         "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        // "format-alt": "{bandwidthDownOctets}    {signalStrength}%"
+        "format-disconnected": "<span font='Font Awesome 6 Free'> </span>",
         "on-click": "kitty -e nmtui"
     },
-    "wireplumber": {
-        "min-length": 6,
+    "wireplumber#sink": {
+        // "min-length": 6,
         "align": 0,
         // "scroll-step": 1, // %, can be a float
         "format": "<span font='Font Awesome 6 Free'>{icon}</span> {volume}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " ",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
             "default": ["", "", ""]
         },
+        "format-muted": " ",
         "on-click": "pavucontrol",
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
+    "wireplumber#source": {
+        // "min-length": 6,
+        "align": 0,
+        "node-type": "Audio/Source",
+        "format": " {volume}",
+        "format-muted": "",
+        "on-click": "pavucontrol",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+        "scroll-step": 5
     },
     "custom/media": {
         "format": "{icon} {text}",

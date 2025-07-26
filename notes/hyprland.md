@@ -6,3 +6,6 @@ rofi
 wlogout
 otf-font-awesome
 pavucontrol
+brightnessctl
+power-profiles-daemon
+hyprsunset
