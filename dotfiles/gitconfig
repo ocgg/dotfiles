@@ -1,3 +1,5 @@
 [user]
 	name = ocgg
 	email = olivier.g@lavache.com
+[init]
+	defaultBranch = main
