@@ -74,6 +74,7 @@ button:hover {
 
 #clock,
 #battery,
+#bluetooth,
 #cpu,
 #memory,
 #disk,
@@ -93,6 +94,7 @@ button:hover {
     color: #ffffff;
 }
 
+#bluetooth:hover,
 #network:hover,
 #clock:hover,
 #battery:hover,
@@ -103,6 +105,12 @@ button:hover {
 #power-profiles-daemon:hover {
     background-color: rgba(0, 0, 0, 0.2);
     box-shadow: inset 0 -3px #ffffff;
+}
+
+#bluetooth.disabled {
+    color: #777;
+    background-color: rgba(0, 0, 0, 0.2);
+    /* box-shadow: inset 0 -3px #ffffff; */
 }
 
 /* #pulseaudio.muted, */
