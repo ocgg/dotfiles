@@ -14,7 +14,7 @@ if [[ $dist =~ "Arch Linux" ]]; then
         git\
         github-cli\
         kitty\
-        luarocks\
+        lua luajit lua51 luarocks\
         make cmake\
         man-db\
         postgresql\
@@ -34,6 +34,11 @@ if [[ $dist =~ "Arch Linux" ]]; then
         power-profiles-daemon\
         thunderbird\
         vlc
+
+    # echo "installing stuff for bluetooth support..."
+    # sudo pacman -S bluez bluez-utils blueman
+    # systemctl enable bluetooth
+    # systemctl start bluetooth
 
     echo "  # Installing oh-my-zsh plugins..."
     zshdir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
