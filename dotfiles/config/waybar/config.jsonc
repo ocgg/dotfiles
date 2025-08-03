@@ -235,7 +235,7 @@
         "format": "",
         // "format-connected": "",
         // "format-disabled": "",
-        // "format-no-controller": "",
+        "format-no-controller": "",
         "tooltip-format": "{num_connections} connected\n{device_enumerate}",
         "tooltip-format-connected": "{num_connections} connected\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}",
@@ -257,7 +257,7 @@
         "format" : "<span font='Font Awesome 7 Free'>⏻</span>",
         "min-length": 4,
 		"tooltip": false,
-        "on-click": "wlogout -s -L700 -R700 -T400 -B400 -c20 -r20"
+        "on-click": "wlogout -s -b2 -L750 -R750 -T400 -B400 -c20 -r50"
 		// "menu": "on-click",
 		// "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
 		// "menu-actions": {
