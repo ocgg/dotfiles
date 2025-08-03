@@ -29,6 +29,7 @@
         // "pulseaudio",
         "wireplumber#sink",
         "wireplumber#source",
+        "bluetooth",
         // "backlight",
         // "keyboard-state",
         "battery",
@@ -43,9 +44,9 @@
         "all-outputs": true,
         "format": "<span color='#AAA'><small>{id}</small></span>{icon}",
         "format-icons": {
-            "urgent": "<span font='Font Awesome 6 Free'></span>",
-            "active": "<span font='Font Awesome 6 Free'></span>",
-            "default": "<span font='Font Awesome 6 Free'></span>"
+            "urgent": "<span font='Font Awesome 7 Free'></span>",
+            "active": "<span font='Font Awesome 7 Free'></span>",
+            "default": "<span font='Font Awesome 7 Free'></span>"
         }
     },
     "keyboard-state": {
@@ -53,8 +54,8 @@
         "capslock": true,
         "format": "{name} {icon}",
         "format-icons": {
-            "locked": "<span font='Font Awesome 6 Free'></span>",
-            "unlocked": "<span font='Font Awesome 6 Free'></span>"
+            "locked": "<span font='Font Awesome 7 Free'></span>",
+            "unlocked": "<span font='Font Awesome 7 Free'></span>"
         }
     },
     "sway/mode": {
@@ -135,7 +136,7 @@
         }
     },
     "cpu": {
-        "format": "{usage}% <span font='Font Awesome 6 Free'></span>"
+        "format": "{usage}% <span font='Font Awesome 7 Free'></span>"
     },
     "memory": {
         "format": "{}% "
@@ -145,8 +146,8 @@
         // "thermal-zone": 2,
         "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input",
         "critical-threshold": 75,
-        "format-critical": "{temperatureC}°C <span font='Font Awesome 6 Free'>{icon}</span>",
-        "format": "<span font='Font Awesome 6 Free'>{icon}</span> {temperatureC}°C",
+        "format-critical": "{temperatureC}°C <span font='Font Awesome 7 Free'>{icon}</span>",
+        "format": "<span font='Font Awesome 7 Free'>{icon}</span> {temperatureC}°C",
         "format-icons": ["", "", ""],
         "tooltip": false,
         "on-click": "kitty -e btop"
@@ -183,7 +184,7 @@
     "power-profiles-daemon": {
         "min-length": 3,
         "justify": "center",
-        "format": "<span font='Font Awesome 6 Free'>{icon}</span>",
+        "format": "<span font='Font Awesome 7 Free'>{icon}</span>",
         "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
         "tooltip": true,
         "format-icons": {
@@ -198,20 +199,20 @@
         "interval": 2,
         // "min-length": 10,
         "align": 0,
-        "format": "<span font='Font Awesome 6 Free'></span> {bandwidthDownOctets}",
-        // "format-wifi": "<span font='Font Awesome 6 Free'></span> {bandwidthDownOctets}",
-        // "format-ethernet": "<span font='Font Awesome 6 Free'></span> {bandwidthDownOctets}",
-        "tooltip-format-ethernet": "<span font='Font Awesome 6 Free'></span> {bandwidthUpOctets}\n{essid}\n{ifname}\n{gwaddr}/{cidr}\n{ipaddr}",
-        "tooltip-format-wifi": "<span font='Font Awesome 6 Free'></span> {bandwidthUpOctets}\n<span font='Font Awesome 6 Free'></span> {frequency} {signalStrength}%\n\n{essid}\n{ifname}\n{gwaddr}/{cidr}",
+        "format": "<span font='Font Awesome 7 Free'></span> {bandwidthDownOctets}",
+        // "format-wifi": "<span font='Font Awesome 7 Free'></span> {bandwidthDownOctets}",
+        // "format-ethernet": "<span font='Font Awesome 7 Free'></span> {bandwidthDownOctets}",
+        "tooltip-format-ethernet": "<span font='Font Awesome 7 Free'></span> {bandwidthUpOctets}\n{essid}\n{ifname}\n{gwaddr}/{cidr}\n{ipaddr}",
+        "tooltip-format-wifi": "<span font='Font Awesome 7 Free'></span> {bandwidthUpOctets}\n<span font='Font Awesome 7 Free'></span>  {frequency} {signalStrength}%\n\n{essid}\n{ifname}\n{gwaddr}/{cidr}",
         "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "<span font='Font Awesome 6 Free'> </span>",
+        "format-disconnected": "<span font='Font Awesome 7 Free'> </span>",
         "on-click": "kitty -e nmtui"
     },
     "wireplumber#sink": {
         // "min-length": 6,
         "align": 0,
         // "scroll-step": 1, // %, can be a float
-        "format": "<span font='Font Awesome 6 Free'>{icon}</span> {volume}",
+        "format": "<span font='Font Awesome 7 Free'>{icon}</span> {volume}",
         "format-icons": {
             "default": ["", "", ""]
         },
@@ -221,13 +222,24 @@
     },
     "wireplumber#source": {
         // "min-length": 6,
-        "align": 0,
+        "align": 0.5,
         "node-type": "Audio/Source",
         "format": " {volume}",
-        "format-muted": "",
+        "format-muted": " ",
         "on-click": "pavucontrol",
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
         "scroll-step": 5
+    },
+    "bluetooth": {
+        // "min-length": 4,
+        "format": "",
+        // "format-connected": "",
+        // "format-disabled": "",
+        // "format-no-controller": "",
+        "tooltip-format": "{num_connections} connected\n{device_enumerate}",
+        "tooltip-format-connected": "{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "on-click": "blueman-manager"
     },
     "custom/media": {
         "format": "{icon} {text}",
@@ -242,7 +254,7 @@
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
     "custom/power": {
-        "format" : "<span font='Font Awesome 6 Free'>⏻</span>",
+        "format" : "<span font='Font Awesome 7 Free'>⏻</span>",
         "min-length": 4,
 		"tooltip": false,
         "on-click": "wlogout -s -L700 -R700 -T400 -B400 -c20 -r20"

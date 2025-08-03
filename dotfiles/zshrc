@@ -14,12 +14,11 @@ zstyle ':omz:plugins:nvm' lazy yes
 # This lists custom commands that will load nvm (nvim need it for copilot)
 zstyle ':omz:plugins:nvm' lazy-cmd nvim code codium rails ruby python pip pipenv
 
-export FZF_DEFAULT_COMMAND="find . -not \( -path '*/.git' -prune \)"
+# export FZF_DEFAULT_COMMAND="find . -not \( -path '*/.git' -prune \)"
+export FZF_DEFAULT_COMMAND="fd"
 
 # Disable warning about insecure completion-dependent directories
 ZSH_DISABLE_COMPFIX=true
-
-export NVM_DIR="$HOME/.config/nvm"
 
 # Actually load Oh-My-Zsh
 source "${ZSH}/oh-my-zsh.sh"
@@ -84,3 +83,7 @@ fif() {
 LS_COLORS="ow=04;01;34"
 # Use ls colors in completion lists.
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
