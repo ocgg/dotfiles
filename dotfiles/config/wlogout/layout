@@ -14,21 +14,21 @@
 }
 {
     "label" : "shutdown",
-    "action" : "systemctl poweroff",
+    "action" : "kitty -e cgc && systemctl poweroff",
     "text" : "  Shutdown ",
     "keybind" : "s",
     "circular": true
 }
 {
     "label" : "suspend",
-    "action" : "systemctl suspend",
+    "action" : "systemctl suspend && hyprlock",
     "text" : " Suspend ",
     "keybind" : "u",
     "circular": true
 }
 {
     "label" : "lock",
-    "action" : "loginctl lock-session",
+    "action" : "hyprlock",
     "text" : "  Lock ",
     "keybind" : "l",
     "circular": true

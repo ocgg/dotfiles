@@ -50,6 +50,7 @@ export PYTHONBREAKPOINT=ipdb.set_trace
 
 # OCGG
 
+export PATH=$PATH:~/scripts
 export PATH=$PATH:~/code/ftrack
 export PATH=$PATH:~/.local/bin
 export GOBIN=$HOME/go/bin/

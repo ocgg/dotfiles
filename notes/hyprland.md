@@ -2,6 +2,7 @@
 waybar
 swaync
 hyprpolkitagent
+hyprlock
 rofi
 wlogout
 otf-font-awesome
