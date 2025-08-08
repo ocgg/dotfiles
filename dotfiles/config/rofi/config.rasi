@@ -1,12 +1,12 @@
 configuration {
 /*	modes: "window,drun,run,ssh";*/
-  modes: [window,drun,run,ssh,filebrowser, recursivebrowser];
-	font: "Adwaita Sans 14";
+    modes: [window,drun,run,ssh,filebrowser,recursivebrowser];
+	font: "Arimo Nerd Font 12";
 /*	location: 0;*/
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
-/*	fixed-num-lines: true;*/
-/*	show-icons: false;*/
+/*	fixed-num-lines: false;*/
+	show-icons: true;
 /*	preview-cmd: ;*/
 /*	on-selection-changed: ;*/
 /*	on-mode-changed: ;*/
@@ -26,7 +26,7 @@ configuration {
 /*	drun-match-fields: "name,generic,exec,categories,keywords";*/
 /*	drun-categories: ;*/
 /*	drun-exclude-categories: ;*/
-/*	drun-show-actions: false;*/
+	drun-show-actions: true;
 /*	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/
 /*	drun-url-launcher: "xdg-open";*/
 /*	disable-history: false;*/
@@ -34,7 +34,7 @@ configuration {
 /*	sort: false;*/
 /*	sorting-method: "normal";*/
 /*	case-sensitive: false;*/
-/*	case-smart: false;*/
+	case-smart: true;
 /*	cycle: true;*/
 /*	sidebar-mode: false;*/
 /*	hover-select: false;*/
@@ -176,24 +176,34 @@ configuration {
   gray: #777;
   darkgray: rgba (0, 0, 0, 40%);
   white: rgba (255, 255, 255, 85%);
+  active: rgba (255, 255, 255, 12%);
 
   separatorcolor: var(gray);
   // selected-normal-background: var(darkgray);
 }
 
+window {
+  location: center;
+  anchor: north;
+  width: 36%;
+  y-offset: -15%;
+  border-radius: 10px;
+  border: 1;
+  border-color: #444;
+}
+
+listview {
+  padding: 20px 0px 0px ;
+  lines: 10;
+}
+
 element selected.normal {
-  background-color: var(darkgray);
+  background-color: var(active);
 }
 
 element-text selected.normal {
   text-color: var(white);
   text-transform: bold;
-}
-
-window {
-  border-radius: 10px;
-  border: 1;
-  border-color: #444;
 }
 
 inputbar {
@@ -227,10 +237,6 @@ textbox-prompt-colon {
 
 textbox {
   text-color: var(gray);
-}
-
-listview {
-    padding: 20px 0px 0px ;
 }
 
 element {

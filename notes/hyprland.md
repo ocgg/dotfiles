@@ -5,8 +5,11 @@ hyprpolkitagent
 hyprlock
 rofi
 wlogout
-otf-font-awesome
 pavucontrol
 brightnessctl
 power-profiles-daemon
 hyprsunset
+cliphist
+
+otf-font-awesome
+ttf-arimo-nerd

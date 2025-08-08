@@ -30,6 +30,7 @@
         "wireplumber#sink",
         "wireplumber#source",
         "bluetooth",
+        "custom/cliphist",
         // "backlight",
         // "keyboard-state",
         "battery",
@@ -44,9 +45,9 @@
         "all-outputs": true,
         "format": "<span color='#AAA'><small>{id}</small></span>{icon}",
         "format-icons": {
-            "urgent": "<span font='Font Awesome 7 Free'></span>",
-            "active": "<span font='Font Awesome 7 Free'></span>",
-            "default": "<span font='Font Awesome 7 Free'></span>"
+            "urgent": "",
+            "active": "",
+            "default": ""
         }
     },
     "keyboard-state": {
@@ -54,8 +55,8 @@
         "capslock": true,
         "format": "{name} {icon}",
         "format-icons": {
-            "locked": "<span font='Font Awesome 7 Free'></span>",
-            "unlocked": "<span font='Font Awesome 7 Free'></span>"
+            "locked": "",
+            "unlocked": ""
         }
     },
     "sway/mode": {
@@ -115,7 +116,7 @@
     "clock": {
         // "timezone": "America/New_York",
         "locale": "fr_FR.utf8",
-	    "tooltip-format": "<span size='12pt' font='Hack Nerd Font'>{calendar}</span>",
+	    "tooltip-format": "<span size='15pt' font='Hack Nerd Font'>{calendar}</span>",
         "format-alt": "{:%A %e %B %Y}",
         "calendar": {
             "mode-mon-col"  : 3,
@@ -136,7 +137,7 @@
         }
     },
     "cpu": {
-        "format": "{usage}% <span font='Font Awesome 7 Free'></span>"
+        "format": "{usage}% "
     },
     "memory": {
         "format": "{}% "
@@ -146,8 +147,8 @@
         // "thermal-zone": 2,
         "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input",
         "critical-threshold": 75,
-        "format-critical": "{temperatureC}°C <span font='Font Awesome 7 Free'>{icon}</span>",
-        "format": "<span font='Font Awesome 7 Free'>{icon}</span> {temperatureC}°C",
+        "format-critical": "{temperatureC}°C {icon}",
+        "format": "{icon} {temperatureC}°C",
         "format-icons": ["", "", ""],
         "tooltip": false,
         "on-click": "kitty -e btop"
@@ -165,14 +166,17 @@
             "critical": 10
         },
         "format": "{icon}",
-        // "format-full": "{capacity}% {icon}",
-        "format-charging": "",
+        "format-full": "󱟢",
+        "format-charging": "{icon}",
         "format-plugged": "",
-        "format-full": "",
+        // "format-full": "",
         // "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
-        "format-icons": ["", "", "", "", ""],
-        "tooltip-format": "{capacity}%  {time}\nConsumption: {power}W\nHealth: {health}%",
+        "format-icons": {
+            "default": ["󰂃", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+            "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
+        },
+        "tooltip-format": "󰂑 {capacity}%\n󱧥 {time}\n󰂄 {power}W\n󱈑 {health}%",
         "on-click": ""
     },
     // "battery#bat2": {
@@ -184,7 +188,7 @@
     "power-profiles-daemon": {
         "min-length": 3,
         "justify": "center",
-        "format": "<span font='Font Awesome 7 Free'>{icon}</span>",
+        "format": "{icon}",
         "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
         "tooltip": true,
         "format-icons": {
@@ -199,24 +203,24 @@
         "interval": 2,
         // "min-length": 10,
         "align": 0,
-        "format": "<span font='Font Awesome 7 Free'></span> {bandwidthDownOctets}",
-        // "format-wifi": "<span font='Font Awesome 7 Free'></span> {bandwidthDownOctets}",
-        // "format-ethernet": "<span font='Font Awesome 7 Free'></span> {bandwidthDownOctets}",
-        "tooltip-format-ethernet": "<span font='Font Awesome 7 Free'></span> {bandwidthUpOctets}\n{essid}\n{ifname}\n{gwaddr}/{cidr}\n{ipaddr}",
-        "tooltip-format-wifi": "<span font='Font Awesome 7 Free'></span> {bandwidthUpOctets}\n<span font='Font Awesome 7 Free'></span>  {frequency} {signalStrength}%\n\n{essid}\n{ifname}\n{gwaddr}/{cidr}",
+        "format": " {bandwidthDownOctets}",
+        // "format-wifi": " {bandwidthDownOctets}",
+        "tooltip-format-wifi": " {bandwidthUpOctets}\n  {signalStrength}% - {frequency}Ghz\n\n{essid}\n{ifname}\n{gwaddr}/{cidr}",
+        "format-ethernet": "󰱦 {bandwidthDownOctets}",
+        "tooltip-format-ethernet": "󰳘 {bandwidthUpOctets}\n{essid}\n{ifname}\n{gwaddr}/{cidr}\n{ipaddr}",
         "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "<span font='Font Awesome 7 Free'> </span>",
+        "format-disconnected": "󰌙",
         "on-click": "kitty -e nmtui"
     },
     "wireplumber#sink": {
         // "min-length": 6,
         "align": 0,
         // "scroll-step": 1, // %, can be a float
-        "format": "<span font='Font Awesome 7 Free'>{icon}</span> {volume}",
+        "format": "{icon} {volume}",
         "format-icons": {
             "default": ["", "", ""]
         },
-        "format-muted": " ",
+        "format-muted": "",
         "on-click": "pavucontrol",
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
@@ -232,14 +236,14 @@
     },
     "bluetooth": {
         // "min-length": 4,
-        "format": "",
+        "format": "󰂯",
         // "format-connected": "",
         // "format-disabled": "",
         "format-no-controller": "",
         "tooltip-format": "{num_connections} connected\n{device_enumerate}",
         "tooltip-format-connected": "{num_connections} connected\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}",
-        "on-click": "blueman-manager"
+        "on-click": "blueman-manager || notify-send 'blueman-manager not installed'"
     },
     "custom/media": {
         "format": "{icon} {text}",
@@ -254,17 +258,22 @@
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
     "custom/power": {
-        "format" : "<span font='Font Awesome 7 Free'>⏻</span>",
+        "format" : "⏻",
         "min-length": 4,
 		"tooltip": false,
         "on-click": "wlogout -s -b2 -L750 -R750 -T400 -B400 -c20 -r50"
-		// "menu": "on-click",
-		// "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-		// "menu-actions": {
-		// 	"shutdown": "shutdown now",
-		// 	"reboot": "reboot",
-		// 	"suspend": "systemctl suspend"
-			// "hibernate": "systemctl hibernate"
+	},
+    "custom/cliphist": {
+        "format" : "",
+        "min-length": 4,
+		"tooltip": false,
+        // "on-click": "wlogout -s -b2 -L750 -R750 -T400 -B400 -c20 -r50",
+		"menu": "on-click",
+		"menu-file": "$HOME/.config/waybar/cliphist_menu.xml",
+		"menu-actions": {
+			"open": "cliphist list | rofi -dmenu -p cliphist | cliphist decode | wl-copy",
+            "delete": "cliphist list | rofi -dmenu -p cliphist | cliphist delete",
+			"clear": "cliphist wipe"
 		}
     }
 }

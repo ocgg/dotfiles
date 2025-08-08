@@ -1,7 +1,11 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: Noto Sans, Roboto, sans-serif;
+    font-family: Arimo Nerd Font, Noto Sans, Roboto, sans-serif;
     font-size: 14px;
+}
+
+tooltip label {
+    font-size: 16px;
 }
 
 window#waybar {
@@ -95,6 +99,7 @@ button:hover {
 }
 
 #bluetooth:hover,
+#custom-cliphist:hover,
 #network:hover,
 #clock:hover,
 #battery:hover,
@@ -161,11 +166,11 @@ button:hover {
 #battery.critical:not(.charging) {
     background-color: #eb4d4b;
     color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+    /* animation-name: blink; */
+    /* animation-duration: 0.5s; */
+    /* animation-timing-function: steps(12); */
+    /* animation-iteration-count: infinite; */
+    /* animation-direction: alternate; */
 }
 
 /* #power-profiles-daemon.performance { */
