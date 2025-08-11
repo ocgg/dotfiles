@@ -14,11 +14,11 @@ return {
             enabled = true,
             auto_refresh = false,
             keymap = {
-                jump_prev = '[[',
-                jump_next = ']]',
-                accept = '<A-m>',
-                refresh = 'gr',
-                open = '<M-CR>',
+                jump_prev = '<A-*>',
+                jump_next = '<A-ù>',
+                accept = '<A-l>',
+                refresh = '<A-r>',
+                open = '<A-CR>',
             },
             layout = {
                 position = 'right', -- bottom | top | left | right
@@ -31,10 +31,10 @@ return {
             hide_during_completion = true,
             debounce = 200,
             keymap = {
-                accept = '<A-m>',
+                accept = '<A-l>',
                 accept_word = '<A-$>',
                 accept_line = false,
-                next = '<A-*>',
+                next = '<A-*>', -- will trigger suggestion
                 prev = '<A-ù>',
                 dismiss = '<A-w>',
             },

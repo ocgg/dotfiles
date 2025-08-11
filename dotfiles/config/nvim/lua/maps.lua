@@ -20,10 +20,10 @@ map("n", "<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 map("n", "<A-f>", vim.lsp.buf.format, "Format Document")
 
 -- Diagnostic
-map("n", "<leader>dp", vim.diagnostic.goto_prev, "Go to previous diagnostic message")
-map("n", "<leader>dn", vim.diagnostic.goto_next, "Go to next diagnostic message")
-map("n", "<leader>do", vim.diagnostic.open_float, "Open floating diagnostic message")
-map("n", "<leader>dl", vim.diagnostic.setloclist, "Open diagnostics list")
+map("n", "<leader>dp", vim.diagnostic.goto_prev, "vim.diagnostic.goto_prev")
+map("n", "<leader>dn", vim.diagnostic.goto_next, "vim.diagnostic.goto_next")
+map("n", "<leader>do", vim.diagnostic.open_float, "vim.diagnostic.open_float")
+map("n", "<leader>dl", vim.diagnostic.setloclist, "diagnostics list: vim.diagnostic.setloclist")
 
 map("n", "<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 map("n", "<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
@@ -57,18 +57,17 @@ map("n", "<A-K>", ":m .-2<CR>==", "Move line up")
 -- map("n", "<C-A>4", "4gt", "Go to tab 4")
 -- map("n", "<C-A>5", "5gt", "Go to tab 5")
 
+map("i", ":w<CR>", "<Esc>:w<CR>", "Save on :w insert mode")
+map("i", ":wa<CR>", "<Esc>:wa<CR>", "Save on :w insert mode")
+
 -- Search and Replace
-map({ "n", "v" }, "<leader>sr", require("ocgg.scripts.search_and_replace").replace, "Search and Replace")
+map({ "n", "v" }, "<leader>sr", require("scripts.search_and_replace").replace, "Search and Replace")
 
 local function toggle_kanagawa_theme()
     local current = vim.g.kanagawa_theme
-    local next = current == "wave" and "dragon" or "wave"
+    local next = (current == "wave" or not current) and "dragon" or "wave"
     vim.g.kanagawa_theme = next
     vim.cmd("colorscheme kanagawa-" .. next)
 end
 
--- Raccourci <leader>ct pour basculer les thèmes
-vim.keymap.set('n', '<leader>ct', toggle_kanagawa_theme, { desc = "[C]hange [T]heme (kanagawa wave/dragon)" })
-
-map("i", ":w<CR>", "<Esc>:w<CR>", "Save on :w insert mode")
-map("i", ":wa<CR>", "<Esc>:wa<CR>", "Save on :w insert mode")
+vim.keymap.set('n', '<leader>*', toggle_kanagawa_theme, { desc = "[C]hange [T]heme (kanagawa wave/dragon)" })

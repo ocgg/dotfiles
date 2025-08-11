@@ -1,0 +1,11 @@
+# - Do not put empty lines in that file
+# - Lines beginning with '#' are ignored
+# - Write absolute paths to your repos below that line
+
+/home/ocgg/notes
+
+/home/ocgg/code/ocgg-dotfiles
+
+qdlfjsdflkj
+/home/ocgg/code
+/home/ocgg/code/clean-git-checker

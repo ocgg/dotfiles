@@ -37,7 +37,7 @@ configuration {
 	case-smart: true;
 /*	cycle: true;*/
 /*	sidebar-mode: false;*/
-/*	hover-select: false;*/
+	hover-select: true;
 /*	eh: 1;*/
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/

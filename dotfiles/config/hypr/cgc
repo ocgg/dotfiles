@@ -1,0 +1,116 @@
+#!/bin/bash
+
+ROOT=$(dirname "$(realpath "$0")")
+REPOS_FILE_NAME="cgc-repos.txt"
+REPOS_FILE_PATH="$ROOT/$REPOS_FILE_NAME"
+WARNINGS=()
+
+RED="\e[0;31m"
+GREEN="\e[0;32m"
+YELLOW="\e[0;33m"
+BLUE="\e[0;34m"
+CYAN="\e[0;36m"
+
+BOLD="\e[1;m"
+
+NC="\e[0m"
+
+USER_EXIT_CODE=33
+
+print_warnings() {
+    local title="CGC: directory list contains errors!"
+
+    for warning in "${WARNINGS[@]}"; do
+        local warnings+="$warning\n"
+    done
+
+    notify-send "$title" "\n$warnings\nCheck the file: $REPOS_FILE_PATH"
+}
+
+add_warning() {
+    WARNINGS+=("$1")
+}
+
+check_repo_file() {
+    [ -f "$REPOS_FILE_PATH" ] && return 0
+
+    local title="CGC: Repo list file not found!"
+    touch "$REPOS_FILE_PATH"
+    {
+        echo "# - Lines beginning with '#' are ignored";
+        echo "# - Empty lines are ignored";
+        echo "# - Write absolute paths to your repos, one per line"
+    } >> "$REPOS_FILE_PATH"
+    message="The file was created in $REPOS_FILE_PATH.\nPlease provide absolute paths to git directories in that file, one path a line, and retry."
+    notify-send "$title" "$message"
+    return 1
+}
+
+check_repo_dir() {
+    if [[ -z "$1" || "$1" =~ ^# ]]; then
+        return 1
+    elif [ ! -d "$1" ]; then
+        add_warning "Directory not found: $1"
+        return 1
+    elif ! git -C "$1" rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+        add_warning "Not a git repository: $1"
+        return 1
+    fi
+    return 0
+}
+
+# NOTE: "exit" commands here just terminate the subshell from where menu() is
+# called, not the entire script.
+menu() {
+    while true; do
+        echo "[d]iff, [c]ommit, [cd] to repo, [i]gnore, [q]uit"
+        read -r -p "> " action < /dev/tty
+        case "$action" in
+            d) git diff;;
+
+            c)  read -r -p "Message: " msg < /dev/tty
+                git add --all
+                git commit -m "$msg" || exit 1
+                read -r -p "Run git push ? (y/n) > " push < /dev/tty
+                [ "$push" = "y" ] && git push
+                break;;
+
+            cd) echo
+                echo -e "${GREEN}Opening $1 in a new session...${NC}"
+                echo -e "${GREEN}'exit' or ctrl+d to come back.${NC}"
+                cd "$1" || exit
+                $SHELL -i
+                break;;
+
+            i) break;;
+
+            q) exit $USER_EXIT_CODE;;
+        esac
+    done
+}
+
+check_repo_file || exit 1
+
+while IFS= read -r repo_dir; do
+    check_repo_dir "$repo_dir" || continue
+
+    (
+        cd "$repo_dir" || exit 2
+
+        if [ -n "$(git status --porcelain)" ]; then
+            clear
+            repo_name="${CYAN}${BOLD}$(basename "$(realpath .)")${NC}"
+            currentbranch="${BLUE}${BOLD}git:(${RED}${BOLD}$(git branch --show-current)${BLUE})${NC}"
+            echo -e " ${YELLOW}✗${NC} $repo_name $currentbranch (at: $(pwd))"
+            echo
+            git status --short
+            echo
+            menu "$repo_dir"
+        fi
+    )
+    output_code=$?
+    [ $output_code -eq $USER_EXIT_CODE ] && exit
+    [ $output_code -eq 1 ] && exit 1
+done < "$REPOS_FILE_PATH"
+
+[ ${#WARNINGS[@]} -ne 0 ] && print_warnings

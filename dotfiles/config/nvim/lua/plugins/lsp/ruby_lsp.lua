@@ -1,0 +1,26 @@
+return {
+  -- 'adam12/ruby-lsp.nvim',
+  -- dependencies = {
+  --   'nvim-lua/plenary.nvim',
+  --   'neovim/nvim-lspconfig',
+  -- },
+  -- ft = { 'ruby', 'eruby' },
+  -- config = true,
+  -- -- opts = {
+  -- --   lspconfig = {
+  -- --     init_options = {
+  -- --       formatter = 'standard',
+  -- --       linters = { 'standard' },
+  -- --     },
+  -- --   },
+  -- -- },
+  -- keys = {
+  --   {
+  --     '<leader>cl',
+  --     function()
+  --       vim.lsp.codelens.run()
+  --     end,
+  --     desc = 'Run Code Lens',
+  --   },
+  -- },
+}
