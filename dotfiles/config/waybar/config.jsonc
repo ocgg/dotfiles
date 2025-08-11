@@ -261,13 +261,12 @@
         "format" : "⏻",
         "min-length": 4,
 		"tooltip": false,
-        "on-click": "wlogout -s -b2 -L750 -R750 -T400 -B400 -c20 -r50"
+        "on-click": "~/.config/hypr/shutdown-menu.sh"
 	},
     "custom/cliphist": {
         "format" : "",
         "min-length": 4,
 		"tooltip": false,
-        // "on-click": "wlogout -s -b2 -L750 -R750 -T400 -B400 -c20 -r50",
 		"menu": "on-click",
 		"menu-file": "$HOME/.config/waybar/cliphist_menu.xml",
 		"menu-actions": {
