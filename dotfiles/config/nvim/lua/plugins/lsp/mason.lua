@@ -17,22 +17,22 @@ return {
             "pyright",
             "standardrb",
             "ruby_lsp",
-            -- linters
-            "erb-lint",
-            "eslint_d",
-            "htmlhint",
-            "markdownlint",
-            "pylint",
-            "shellcheck",
-            "stylelint",
-            -- formatters
-            "beautysh", -- bash
-            "black",    -- python
-            "erb-formatter",
-            "htmlbeautifier",
-            "isort", -- python
-            "prettier",
-            "stylua",
+            -- -- linters
+            -- "erb-lint",
+            -- "eslint_d",
+            -- "htmlhint",
+            -- "markdownlint",
+            -- "pylint",
+            -- "shellcheck",
+            -- "stylelint",
+            -- -- formatters
+            -- "beautysh", -- bash
+            -- "black",    -- python
+            -- "erb-formatter",
+            -- "htmlbeautifier",
+            -- "isort", -- python
+            -- "prettier",
+            -- "stylua",
         },
     },
 }

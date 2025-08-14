@@ -44,3 +44,9 @@ o.timeoutlen = 300
 o.colorcolumn = "80"
 o.scrolloff = 5
 o.sidescrolloff = 15
+
+vim.diagnostic.config({
+  float = {
+    source = "always", -- Shows from which LSP comes the diagnostic
+  },
+})

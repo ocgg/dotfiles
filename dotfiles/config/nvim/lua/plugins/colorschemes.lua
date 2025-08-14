@@ -3,8 +3,11 @@ return {
         "rebelot/kanagawa.nvim",
         priority = 1000,
         opts = {
-            transparent = true, -- do not set background color
-            colors = { theme = { all = { ui = { bg_gutter = "none" } } } },
+            -- transparent = true, -- do not set background color
+            colors = {
+                palette = { sumiInk3 = "#1D2129" },
+                theme = { all = { ui = { bg_gutter = "none" } } }
+            },
             overrides = function(colors)
                 local theme = colors.theme
                 return {

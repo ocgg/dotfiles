@@ -71,3 +71,7 @@ local function toggle_kanagawa_theme()
 end
 
 vim.keymap.set('n', '<leader>*', toggle_kanagawa_theme, { desc = "[C]hange [T]heme (kanagawa wave/dragon)" })
+
+vim.keymap.set("n", "<leader>w", function()
+  vim.wo.wrap = not vim.wo.wrap
+end, { desc = "Toggle wrap" })
