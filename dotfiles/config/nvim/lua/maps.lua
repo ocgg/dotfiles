@@ -16,9 +16,6 @@ map("n", "<C-Down>", "<C-w>-")
 map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
 map("n", "<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 
--- Alt-f to format document
-map("n", "<A-f>", vim.lsp.buf.format, "Format Document")
-
 -- Diagnostic
 map("n", "<leader>dp", vim.diagnostic.goto_prev, "vim.diagnostic.goto_prev")
 map("n", "<leader>dn", vim.diagnostic.goto_next, "vim.diagnostic.goto_next")
@@ -63,6 +60,9 @@ map("i", ":wa<CR>", "<Esc>:wa<CR>", "Save on :w insert mode")
 -- Search and Replace
 map({ "n", "v" }, "<leader>sr", require("scripts.search_and_replace").replace, "Search and Replace")
 
+-- Format document & choose formatter if several available
+map("n", "<A-f>", require("scripts.choose_formatter").doit, "Format Document")
+
 local function toggle_kanagawa_theme()
     local current = vim.g.kanagawa_theme
     local next = (current == "wave" or not current) and "dragon" or "wave"
@@ -70,8 +70,8 @@ local function toggle_kanagawa_theme()
     vim.cmd("colorscheme kanagawa-" .. next)
 end
 
-vim.keymap.set('n', '<leader>*', toggle_kanagawa_theme, { desc = "[C]hange [T]heme (kanagawa wave/dragon)" })
+vim.keymap.set('n', '<leader>*t', toggle_kanagawa_theme, { desc = "[C]hange [T]heme (kanagawa wave/dragon)" })
 
-vim.keymap.set("n", "<leader>w", function()
+vim.keymap.set("n", "<A-z>", function()
   vim.wo.wrap = not vim.wo.wrap
 end, { desc = "Toggle wrap" })
