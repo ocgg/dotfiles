@@ -65,8 +65,9 @@
 
     "hyprland/workspaces": {
         "disable-scroll": true,
-        "all-outputs": true,
-        "format": "<span color='#AAA'><small>{id}.</small></span>{icon}",
+        "show-special": true,
+        "special-visible-only": true,
+        "format": "<span color='#AAA'><small>{name}</small></span>{icon}",
         "format-icons": {
             "urgent": "",
             "active": "",
