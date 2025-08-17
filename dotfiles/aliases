@@ -21,3 +21,7 @@ alias conf="nvim -c 'cd ~/code/ocgg-dotfiles'"
 alias nuts="~/code/nuts/nuts"
 alias mdr="~/code/md_cli_renderer/mdr"
 alias icat="kitten icat"
+
+# For steam os with gamescope
+# alias gamemonitor="gamescope --mangoapp -e -- steam -steamdeck -steamos3"
+# alias steamos-session-select="steam -shutdown"
