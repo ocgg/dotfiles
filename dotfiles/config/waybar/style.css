@@ -1,3 +1,10 @@
+@define-color bg-dark #1D2129;
+@define-color bg-gray rgba(100, 114, 125, 0.5);
+@define-color icon-gray #777;
+@define-color lightblue rgb(159, 246, 252);
+@define-color lightblue-faded rgba(159, 246, 252, 0.5);
+@define-color blue #0069d4;
+
 * {
   /* otf-font-awesome or nerd font is required for icons */
   font-family: Arimo Nerd Font, sans-serif;
@@ -6,8 +13,8 @@
 }
 
 tooltip {
-  background-color: #1D2129;
-  border: 1px solid rgba(100, 114, 125, 0.5);
+  background-color: @bg-dark;
+  border: 1px solid @bg-gray;
 }
 
 tooltip label {
@@ -15,8 +22,8 @@ tooltip label {
 }
 
 window#waybar {
-  background-color: #1D2129;
-  border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+  background-color: @bg-dark;
+  border-bottom: 3px solid @bg-gray;
   color: white;
 }
 
@@ -32,29 +39,42 @@ button {
   border-radius: 0;
 }
 
+.module {
+  padding: 0 10px;
+  color: white;
+}
+
+#workspaces {
+  padding-left: 0;
+}
+
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
   box-shadow: inherit;
   text-shadow: inherit;
   background: inherit;
   border: inherit;
-  padding: 0 3px;
+}
+#workspaces button.special:hover {
+  box-shadow: inset 0 -3px @lightblue;
 }
 
 #workspaces button.active {
-  /* padding: 0 3px; */
-  color: white
+  color: white;
+  box-shadow: inset 0 -3px white;
 }
 
-.module {
-  padding: 0 10px;
-  color: white;
-  min-width: 16px;
+#workspaces button.special {
+  color: @lightblue-faded;
+}
+
+#workspaces button.special.active {
+  color: @lightblue;
+  box-shadow: inset 0 -3px @lightblue;
 }
 
 #workspaces button:hover,
 .module:hover {
-  background-color: rgba(255, 255, 255, 0.08);
   box-shadow: inset 0 -3px white;
 }
 
@@ -75,7 +95,7 @@ button {
 #network.disconnected,
 #wireplumber.muted,
 #bluetooth.disabled {
-  color: #777;
+  color: @icon-gray;
 }
 
 #idle_inhibitor.activated,
@@ -90,7 +110,7 @@ button {
 
 #privacy-item {
   padding: 0 5px;
-  background-color: #0069d4;
+  background-color: @blue;
 }
 
 #clock {

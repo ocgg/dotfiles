@@ -7,7 +7,6 @@
     "spacing": 4, // Gaps between modules in px
     // Choose the order of the modules
     "modules-left": [
-        "idle_inhibitor",
         "privacy",
         "hyprland/workspaces"
     ],
@@ -28,16 +27,8 @@
         "custom/power"
     ],
     // Modules configuration
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        },
-        "tooltip-format-activated": "Idle inhibitor: on",
-        "tooltip-format-deactivated": "Idle inhibitor: off"
-    },
     "privacy": {
+        "min-width": 4,
         "icon-spacing": 4,
         "icon-size": 18,
         "transition-duration": 250,
@@ -109,7 +100,7 @@
         "calendar": {
             "mode-mon-col": 3,
             "on-scroll": 1,
-            "weeks-pos": "right",
+            // "weeks-pos": "right",
             "format": {
                 "months": "<span color='white'><b>{}</b></span>",
                 "days": "<span color='#999'><b>{}</b></span>",
@@ -152,8 +143,7 @@
         "on-click": "kitty -e btop"
     },
     "wireplumber#sink": {
-        "align": 0,
-        // "scroll-step": 1, // %, can be a float
+        "node-type": "Audio/Sink",
         "format": "{icon} {volume}",
         "format-icons": {
             "default": [
@@ -167,7 +157,6 @@
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
     "wireplumber#source": {
-        "align": 0.5,
         "node-type": "Audio/Source",
         "format": " {volume}",
         "format-muted": " ",
@@ -205,32 +194,8 @@
         "format-charging": "{icon}",
         "format-plugged": "",
         "format-icons": {
-            "default": [
-                "󰂃",
-                "󰁺",
-                "󰁻",
-                "󰁼",
-                "󰁽",
-                "󰁾",
-                "󰁿",
-                "󰂀",
-                "󰂁",
-                "󰂂",
-                "󰁹"
-            ],
-            "charging": [
-                "󰢟",
-                "󰢜",
-                "󰂆",
-                "󰂇",
-                "󰂈",
-                "󰢝",
-                "󰂉",
-                "󰢞",
-                "󰂊",
-                "󰂋",
-                "󰂅"
-            ]
+            "default": ["󰂃", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+            "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
         },
         "tooltip-format": "󰂑 {capacity}%\n󱧥 {time}\n󰂄 {power}W\n󱈑 {health}%",
         "on-click": ""
