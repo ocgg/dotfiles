@@ -18,7 +18,8 @@ NC="\e[0m"
 USER_EXIT_CODE=33
 
 function print_separator {
-    printf "%.0s-" $(seq 1 "$(tput cols)")
+    local sign="-"
+    printf "%.0s$sign" $(seq 1 "$(tput cols)")
     echo
 }
 
@@ -98,6 +99,8 @@ function unclean_menu {
     done
 }
 
+# NOTE: "exit" commands here just terminate the subshell from where menu() is
+# called, not the entire script.
 function clean_menu {
     while true; do
         echo -e "${YELLOW}${BOLD}[P]ull${NC}, [cd] to repo, [n]ext, [q]uit"
@@ -133,8 +136,8 @@ while IFS= read -r repo_dir; do
         currentbranch="${BLUE}${BOLD}git:(${RED}${BOLD}$(git branch --show-current)${BLUE})${NC}"
 
         if [ -n "$(git status --porcelain)" ]; then
-            echo -e " ${YELLOW}✗${NC} $repo_name $currentbranch"
-            git status --short | indent
+            echo -e "${YELLOW}✗${NC} $repo_name $currentbranch"
+            git -c color.status=always status --short | sed 's/^/  /'
             echo
             unclean_menu "$repo_dir"
         else
