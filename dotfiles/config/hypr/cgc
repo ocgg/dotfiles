@@ -150,7 +150,6 @@ while IFS= read -r repo_dir; do
     [ $output_code -eq 1 ] && exit 1
     echo
     print_separator
-    echo
 done < "$REPOS_FILE_PATH"
 
 [ ${#WARNINGS[@]} -ne 0 ] && print_warnings
