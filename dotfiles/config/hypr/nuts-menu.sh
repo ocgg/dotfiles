@@ -15,7 +15,7 @@ MENU_ENTRIES=(
 "󱙑 Delete note"
 "󰎞 Show raw note"
 "󰺿 Show quicknotes"
-"󱘓 Add quicknote"
+# "󱘓 Add quicknote"
 "󱓩 Edit quicknote"
 " cd notes dir"
 )
@@ -28,9 +28,9 @@ declare -A ENTRY_TO_CMD=(
     ["󱙑 Delete note"]="nuts delete"
     ["󰎞 Show raw note"]="nuts raw | less"
     ["󰺿 Show quicknotes"]="nuts quick | less"
-    ["󱘓 Add quicknote"]="nuts mldkfdkjfhkjfdhqf"
+    # ["󱘓 Add quicknote"]="nuts mldkfdkjfhkjfdhqf"
     ["󱓩 Edit quicknote"]="nuts edit quicknotes"
-    [" cd notes dir"]="cd ~/notes; exec $SHELL"
+    [" cd notes dir"]="cd ~/notes && exec $SHELL"
 )
 
 MENU_LENGTH=${#MENU_ENTRIES[@]}
@@ -43,7 +43,7 @@ listview { scrollbar: false; }
 
 ENTRY=$(
     echo "$MENU_STR"\
-    | rofi\
+    | rofi -i\
         -dmenu\
         -sep ","\
         -l "$MENU_LENGTH"\
@@ -53,8 +53,9 @@ ENTRY=$(
 
 [ "$ENTRY" = "" ] && exit
 
+# Should never happen
 if [[ ! -v ENTRY_TO_CMD["$ENTRY"] ]]; then
-    echo "ERROR: entry does not exist."
+    notify-send "nuts-menu" "ERROR: entry does not exist."
     exit 1
 fi
 

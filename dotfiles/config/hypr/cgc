@@ -17,7 +17,12 @@ NC="\e[0m"
 
 USER_EXIT_CODE=33
 
-print_warnings() {
+function print_separator {
+    printf "%.0s-" $(seq 1 "$(tput cols)")
+    echo
+}
+
+function print_warnings {
     local title="CGC: directory list contains errors!"
 
     for warning in "${WARNINGS[@]}"; do
@@ -27,11 +32,11 @@ print_warnings() {
     notify-send "$title" "\n$warnings\nCheck the file: $REPOS_FILE_PATH"
 }
 
-add_warning() {
+function add_warning {
     WARNINGS+=("$1")
 }
 
-check_repo_file() {
+function check_repo_file {
     [ -f "$REPOS_FILE_PATH" ] && return 0
 
     local title="CGC: Repo list file not found!"
@@ -46,7 +51,7 @@ check_repo_file() {
     return 1
 }
 
-check_repo_dir() {
+function check_repo_dir {
     if [[ -z "$1" || "$1" =~ ^# ]]; then
         return 1
     elif [ ! -d "$1" ]; then
@@ -61,30 +66,56 @@ check_repo_dir() {
 
 # NOTE: "exit" commands here just terminate the subshell from where menu() is
 # called, not the entire script.
-menu() {
+function unclean_menu {
     while true; do
-        echo "[d]iff, [c]ommit, [cd] to repo, [i]gnore, [q]uit"
+        echo -e "${YELLOW}${BOLD}[AUTO]-commit & push${NC}, [d]iff, [c]ommit, [cd] to repo, [n]ext, [q]uit"
         read -r -p "> " action < /dev/tty
         case "$action" in
-            d) git diff;;
-
-            c)  read -r -p "Message: " msg < /dev/tty
+            "" | auto)
+                git add --all
+                git commit -m "auto commit" || exit 1
+                git push && break;;
+            d)
+                git diff;;
+            c)
+                read -r -p "Message: " msg < /dev/tty
                 git add --all
                 git commit -m "$msg" || exit 1
                 read -r -p "Run git push ? (y/n) > " push < /dev/tty
-                [ "$push" = "y" ] && git push
-                break;;
-
-            cd) echo
+                [ "$push" = "y" ] && git push && break;;
+            cd)
+                echo
                 echo -e "${GREEN}Opening $1 in a new session...${NC}"
                 echo -e "${GREEN}'exit' or ctrl+d to come back.${NC}"
                 cd "$1" || exit
                 $SHELL -i
                 break;;
+            n)
+                break;;
+            q)
+                exit $USER_EXIT_CODE;;
+        esac
+    done
+}
 
-            i) break;;
-
-            q) exit $USER_EXIT_CODE;;
+function clean_menu {
+    while true; do
+        echo -e "${YELLOW}${BOLD}[P]ull${NC}, [cd] to repo, [n]ext, [q]uit"
+        read -r -p "> " action < /dev/tty
+        case "$action" in
+            "" | p)
+                git pull && break;;
+            cd)
+                echo
+                echo -e "${GREEN}Opening $1 in a new session...${NC}"
+                echo -e "${GREEN}'exit' or ctrl+d to come back.${NC}"
+                cd "$1" || exit
+                $SHELL -i
+                break;;
+            n)
+                break;;
+            q)
+                exit $USER_EXIT_CODE;;
         esac
     done
 }
@@ -93,24 +124,30 @@ check_repo_file || exit 1
 
 while IFS= read -r repo_dir; do
     check_repo_dir "$repo_dir" || continue
+    echo "Checking repo: $repo_dir"
+    echo
 
     (
         cd "$repo_dir" || exit 2
+        repo_name="${CYAN}${BOLD}$(basename "$(realpath .)")${NC}"
+        currentbranch="${BLUE}${BOLD}git:(${RED}${BOLD}$(git branch --show-current)${BLUE})${NC}"
 
         if [ -n "$(git status --porcelain)" ]; then
-            clear
-            repo_name="${CYAN}${BOLD}$(basename "$(realpath .)")${NC}"
-            currentbranch="${BLUE}${BOLD}git:(${RED}${BOLD}$(git branch --show-current)${BLUE})${NC}"
-            echo -e " ${YELLOW}✗${NC} $repo_name $currentbranch (at: $(pwd))"
+            echo -e " ${YELLOW}✗${NC} $repo_name $currentbranch"
+            git status --short | indent
             echo
-            git status --short
-            echo
-            menu "$repo_dir"
+            unclean_menu "$repo_dir"
+        else
+            echo -e "${GREEN}CLEAN:${NC} $repo_name $currentbranch"
+            clean_menu "$repo_dir"
         fi
     )
     output_code=$?
     [ $output_code -eq $USER_EXIT_CODE ] && exit
     [ $output_code -eq 1 ] && exit 1
+    echo
+    print_separator
+    echo
 done < "$REPOS_FILE_PATH"
 
 [ ${#WARNINGS[@]} -ne 0 ] && print_warnings
