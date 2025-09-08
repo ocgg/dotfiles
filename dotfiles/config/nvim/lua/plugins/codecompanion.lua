@@ -30,14 +30,16 @@ return {
         -- },
         adapters = {
             -- copilot = {},
-            openai = function()
-                local dotenv = dofile(vim.fn.stdpath("config") .. "/.env")
-                return require("codecompanion.adapters").extend("openai", {
-                    env = {
-                        api_key = dotenv.OPENAI_API_KEY
-                    },
-                })
-            end,
+            http = {
+                openai = function()
+                    local dotenv = dofile(vim.fn.stdpath("config") .. "/.env")
+                    return require("codecompanion.adapters").extend("openai", {
+                        env = {
+                            api_key = dotenv.OPENAI_API_KEY
+                        },
+                    })
+                end,
+            }
         },
     },
     vim.keymap.set({ "n", "v" }, "<leader>ii", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true }),

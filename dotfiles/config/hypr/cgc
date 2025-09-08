@@ -3,17 +3,16 @@
 ROOT=$(dirname "$(realpath "$0")")
 REPOS_FILE_NAME="cgc-repos.txt"
 REPOS_FILE_PATH="$ROOT/$REPOS_FILE_NAME"
-WARNINGS=()
 
-RED="\e[0;31m"
-GREEN="\e[0;32m"
-YELLOW="\e[0;33m"
 BLUE="\e[0;34m"
 CYAN="\e[0;36m"
-
+GREEN="\e[0;32m"
+RED="\e[0;31m"
+YELLOW="\e[0;33m"
 BOLD="\e[1;m"
-
 NC="\e[0m"
+
+WARNINGS=()
 
 USER_EXIT_CODE=33
 
