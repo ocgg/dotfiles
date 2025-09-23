@@ -1,9 +1,10 @@
 @define-color bg-dark #1D2129;
 @define-color bg-gray rgba(100, 114, 125, 0.5);
 @define-color icon-gray #777;
-@define-color lightblue rgb(159, 246, 252);
+@define-color lightblue #9FF6FC;
 @define-color lightblue-faded rgba(159, 246, 252, 0.5);
 @define-color blue #0069d4;
+@define-color urgent #fcdd2a;
 
 * {
   /* otf-font-awesome or nerd font is required for icons */
@@ -64,13 +65,20 @@ button {
   box-shadow: inset 0 -3px white;
 }
 
-#workspaces button.special {
+#workspaces.other button {
   color: @lightblue-faded;
 }
 
-#workspaces button.special.active {
+#workspaces.other button.active {
   color: @lightblue;
   box-shadow: inset 0 -3px @lightblue;
+}
+
+#workspaces button.special.empty {
+  opacity: 0;
+}
+#workspaces button.special.empty.active {
+  opacity: 1;
 }
 
 #workspaces button:hover,
@@ -100,8 +108,8 @@ button {
 
 #idle_inhibitor.activated,
 #workspaces button.urgent {
-  color: yellow;
-  box-shadow: inset 0 -3px yellow;
+  color: @urgent;
+  box-shadow: inset 0 -3px @urgent;
 }
 
 #privacy {

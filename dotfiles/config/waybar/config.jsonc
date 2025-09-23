@@ -2,29 +2,35 @@
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 24, // Waybar height (to be removed for auto height)
+    "height": 32, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules in px
     // Choose the order of the modules
     "modules-left": [
         "privacy",
-        "hyprland/workspaces"
+        "hyprland/workspaces",
+        "hyprland/workspaces#common",
+        "hyprland/workspaces#other"
     ],
     "modules-center": [
         "clock",
-        "mpd"
+        // "mpd"
+        "custom/notification"
     ],
     "modules-right": [
         "network",
         "temperature",
+        // "wireplumber",
         "wireplumber#sink",
-        "wireplumber#source",
+        // "wireplumber#source",
+        // "pulseaudio",
+        "pulseaudio#source",
         "bluetooth",
         "custom/cliphist",
         "battery",
         "power-profiles-daemon",
         "hyprland/language",
-        "custom/power"
+        "custom/power",
     ],
     // Modules configuration
     "privacy": {
@@ -33,58 +39,56 @@
         "icon-size": 18,
         "transition-duration": 250,
         "modules": [
-            {
-                "type": "screenshare"
-            },
-            {
-                "type": "audio-out"
-            },
-            {
-                "type": "audio-in"
-            }
+            { "type": "screenshare" },
+            { "type": "audio-out" },
+            { "type": "audio-in" }
         ],
         "ignore-monitor": true,
-        "ignore": [
-            {
-                "type": "audio-in",
-                "name": "cava"
-            },
-            {
-                "type": "screenshare",
-                "name": "obs"
-            }
-        ]
+        // "ignore": [
+        //     {
+        //         "type": "audio-in",
+        //         "name": "cava"
+        //     },
+        //     {
+        //         "type": "screenshare",
+        //         "name": "obs"
+        //     }
+        // ]
     },
     "hyprland/workspaces": {
         "disable-scroll": true,
+        "sort-by": "name",
+        "format": "<big>{icon}</big>",
+        "ignore-workspaces": ["\\D.*"],
+        "format-icons": {
+            "1": "󰲡", "11": "󰲡",
+            "2": "󰲣", "12": "󰲣",
+            "3": "󰲥", "13": "󰲥",
+            "4": "󰲧", "14": "󰲧",
+            "5": "󰲩", "15": "󰲩",
+            "6": "󰲫", "16": "󰲫",
+            "7": "󰲭", "17": "󰲭",
+            "8": "󰲯", "18": "󰲯",
+            "9": "󰲱", "19": "󰲱"
+        }
+    },
+    "hyprland/workspaces#common": {
+        "disable-scroll": true,
+        "sort-by": "name",
+        "format": "<big>{icon}</big>",
+        "ignore-workspaces": ["\\d", "Z.*", "special:.*"],
+        "format-icons": {
+            "Aweb": "󰖟",
+            "Bterm": ""
+        }
+    },
+    "hyprland/workspaces#other": {
+        "disable-scroll": true,
         "show-special": true,
         "sort-by": "name",
-        // "special-visible-only": true,
         "format": "<big>{icon}</big>",
+        "ignore-workspaces": ["(?!Z|special:).*"],
         "format-icons": {
-            // "urgent": "",
-            // "active": "",
-            // "default": "",
-            "1": "󰲡",
-            "11": "󰲡",
-            "2": "󰲣",
-            "12": "󰲣",
-            "3": "󰲥",
-            "13": "󰲥",
-            "4": "󰲧",
-            "14": "󰲧",
-            "5": "󰲩",
-            "15": "󰲩",
-            "6": "󰲫",
-            "16": "󰲫",
-            "7": "󰲭",
-            "17": "󰲭",
-            "8": "󰲯",
-            "18": "󰲯",
-            "9": "󰲱",
-            "19": "󰲱",
-            "Bterm": "",
-            "Aweb": "󰖟",
             "Z1network": "",
             "Z2mail": "",
             "Z3music": "",
@@ -134,36 +138,58 @@
         "critical-threshold": 75,
         "format-critical": "{temperatureC}°C {icon}",
         "format": "{icon} {temperatureC}°C",
-        "format-icons": [
-            "",
-            "",
-            ""
-        ],
+        "format-icons": ["", "", ""],
         "tooltip": false,
         "on-click": "kitty -e btop"
     },
+    // "pulseaudio": {
+    //     "format": "{icon} {volume}",
+    //     "format-muted": "<span color='#777'></span>}",
+    //     "format-icons": {
+    //         "default": ["", "", ""]
+    //     },
+    //     "on-click": "pavucontrol",
+    //     // "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    // },
+    "pulseaudio#source": {
+        "format": "{format_source}",
+        "format-source": "{volume}",
+        "format-source-muted": "<span color='#777'></span>",
+        "on-click": "pavucontrol -t 4",
+        // "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
+    // "wireplumber": {
+    //     "format": "{icon} {volume}  {format_source}",
+    //     "format-muted": "<span color='#777'></span>\t{format_source}",
+    //     "format-source": "{volume}",
+    //     "format-source-muted": "<span color='#777'></span>",
+    //     "format-icons": {
+    //         "default": ["", "", ""]
+    //     },
+    //     "on-click": "pavucontrol",
+    //     "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    // },
     "wireplumber#sink": {
         "node-type": "Audio/Sink",
         "format": "{icon} {volume}",
+        "format-source": " {volume}",
+        "format-source-muted": "",
         "format-icons": {
-            "default": [
-                "",
-                "",
-                ""
-            ]
+            "default": ["", "", ""]
         },
         "format-muted": "",
         "on-click": "pavucontrol",
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
-    "wireplumber#source": {
-        "node-type": "Audio/Source",
-        "format": " {volume}",
-        "format-muted": " ",
-        "on-click": "pavucontrol",
-        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-        "scroll-step": 5
-    },
+    // "wireplumber#source": {
+    //     "node-type": "Audio/Source",
+    //     "format": "{format_source}",
+    //     "format-source": " {volume}",
+    //     "format-source-muted": "",
+    //     "on-click": "pavucontrol -t 4",
+    //     "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    //     "scroll-step": 5
+    // },
     "bluetooth": {
         "format": "󰂯",
         "format-no-controller": "",
@@ -219,5 +245,25 @@
         "format": "⏻",
         "tooltip": false,
         "on-click": "~/.config/hypr/shutdown-menu.sh"
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "none": "󰂚",
+            "notification": "<span color='yellow'>󱅫</span>",
+            "inhibited-notification": "<span color='yellow'>󰅸</span>",
+            "inhibited-none": "󰂜",
+            "dnd-none": "<span color='#777'>󰂚</span>",
+            "dnd-notification": "<span color='#777'>󱅫</span>",
+            "dnd-inhibited-notification": "<span color='#777'>󰅸</span>",
+            "dnd-inhibited-none": "<span color='#777'>󰂜</span>"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click-right": "swaync-client -d -sw",
+        "on-click": "swaync-client -t -sw",
+        "escape": true
     }
 }
