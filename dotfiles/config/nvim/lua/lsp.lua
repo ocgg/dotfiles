@@ -1,4 +1,5 @@
 vim.lsp.config('ruby_lsp', {
+    cmd = { vim.fn.expand("~/.rbenv/shims/ruby-lsp") },
     init_options = {
         formatter = "standard",
         linters = { "standard" },
