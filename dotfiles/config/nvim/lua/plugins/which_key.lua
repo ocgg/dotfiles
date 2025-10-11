@@ -27,6 +27,8 @@ return {
 			{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
 			{ "<leader>f", group = "[F]ind" },
 			{ "<leader>g", group = "[G]oto (Telescope LSP)" },
+			{ "<leader>o", group = "[O]pencode menu" },
+			{ "<leader>*", group = "Custom actions" },
 		},
 	},
 }

@@ -14,9 +14,9 @@ return {
             enabled = true,
             auto_refresh = false,
             keymap = {
-                jump_prev = '<A-*>',
-                jump_next = '<A-ù>',
-                accept = '<A-l>',
+                jump_prev = '<C-p>',
+                jump_next = '<C-n>',
+                accept = '<CR>',
                 refresh = '<A-r>',
                 open = '<A-CR>',
             },
@@ -31,11 +31,11 @@ return {
             hide_during_completion = true,
             debounce = 200,
             keymap = {
-                accept = '<A-l>',
+                accept = '<A-l>', -- will trigger suggestion
                 accept_word = '<A-$>',
-                accept_line = false,
-                next = '<A-*>', -- will trigger suggestion
-                prev = '<A-ù>',
+                accept_line = '<A-j>',
+                next = '<A-n>',
+                prev = '<A-p>',
                 dismiss = '<A-w>',
             },
         },
