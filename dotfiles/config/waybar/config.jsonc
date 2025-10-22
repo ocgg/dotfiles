@@ -15,7 +15,8 @@
     "modules-center": [
         "clock",
         // "mpd"
-        "custom/notification"
+        "custom/notification",
+        "custom/todo"
     ],
     "modules-right": [
         "network",
@@ -156,7 +157,9 @@
         "format-source": "{volume}",
         "format-source-muted": "<span color='#777'></span>",
         "on-click": "pavucontrol -t 4",
-        // "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%-"
     },
     // "wireplumber": {
     //     "format": "{icon} {volume}  {format_source}",
@@ -265,5 +268,9 @@
         "on-click-right": "swaync-client -d -sw",
         "on-click": "swaync-client -t -sw",
         "escape": true
+    },
+    "custom/todo": {
+        "format": "",
+        "on-click": "cat ~/notes/todo.md | rofi -dmenu"
     }
 }
