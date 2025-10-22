@@ -11,8 +11,8 @@ alias tra='tree -augD --metafirst -I .git' # more file infos
 alias tr2="tree -L 2 -a -I .git" # 2 levels deep
 alias tr3="tree -L 3 -a -I .git" # 3 levels deep
 
-alias notes="nvim -c 'cd ~/shared/notes'"
-alias todo="cat ~/shared/notes/todo.md"
+alias notes="nvim -c 'cd ~/notes'"
+alias todo="cat ~/notes/todo.md"
 alias todoedit="nvim -c 'cd ~/shared/notes' -c 'e todo.md'"
 alias plugins="~/code/plugins-ruby/app.rb"
 alias xop="xdg-open"
