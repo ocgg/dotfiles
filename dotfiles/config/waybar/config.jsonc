@@ -77,7 +77,7 @@
         "disable-scroll": true,
         "sort-by": "name",
         "format": "<big>{icon}</big>",
-        "ignore-workspaces": ["\\d", "Z.*", "special:.*"],
+        "ignore-workspaces": ["\\d+", "Z.*", "special:.*"],
         "format-icons": {
             "Aweb": "󰖟",
             "Bterm": ""
