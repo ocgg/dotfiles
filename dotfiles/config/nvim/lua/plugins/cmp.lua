@@ -2,7 +2,6 @@ return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-        "tailwind-tools",
         "onsails/lspkind-nvim",
         "hrsh7th/cmp-buffer", -- source for text in buffer
         "hrsh7th/cmp-path",   -- source for file system paths
@@ -71,11 +70,6 @@ return {
                     end
                 end, { "i", "s" }),
             }),
-            formatting = {
-                format = require("lspkind").cmp_format({
-                    before = require("tailwind-tools.cmp").lspkind_format
-                }),
-            },
             sources = cmp.config.sources({
                 { name = "nvim_lsp" },
                 { name = "luasnip", option = { use_show_condition = false } },
