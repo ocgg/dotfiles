@@ -2,7 +2,7 @@
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 32, // Waybar height (to be removed for auto height)
+    // "height": 32, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules in px
     // Choose the order of the modules
@@ -13,25 +13,21 @@
         "hyprland/workspaces#other"
     ],
     "modules-center": [
-        "clock",
-        // "mpd"
         "custom/notification",
-        "custom/todo"
+        "clock",
+        "custom/little-reminder"
     ],
     "modules-right": [
         "network",
         "temperature",
-        // "wireplumber",
         "wireplumber#sink",
-        // "wireplumber#source",
-        // "pulseaudio",
         "pulseaudio#source",
         "bluetooth",
         "custom/cliphist",
         "battery",
         "power-profiles-daemon",
         "hyprland/language",
-        "custom/power",
+        "custom/power"
     ],
     // Modules configuration
     "privacy": {
@@ -44,17 +40,7 @@
             { "type": "audio-out" },
             { "type": "audio-in" }
         ],
-        "ignore-monitor": true,
-        // "ignore": [
-        //     {
-        //         "type": "audio-in",
-        //         "name": "cava"
-        //     },
-        //     {
-        //         "type": "screenshare",
-        //         "name": "obs"
-        //     }
-        // ]
+        "ignore-monitor": true
     },
     "hyprland/workspaces": {
         "disable-scroll": true,
@@ -99,7 +85,7 @@
     "clock": {
         "timezone": "Europe/Paris",
         "locale": "fr_FR.utf8",
-        "tooltip-format": "<span size='13pt' font='JetBrainsMono Nerd Font'>{calendar}</span>",
+        "tooltip-format": "<span size='13pt' font='JetBrainsMonoNL Nerd Font'>{calendar}</span>",
         "format-alt": "{:L%A %e %B %Y   •   %H:%M}",
         "smooth-scrolling-threshold": 10,
         "calendar": {
@@ -155,7 +141,7 @@
     "pulseaudio#source": {
         "format": "{format_source}",
         "format-source": "{volume}",
-        "format-source-muted": "<span color='#777'></span>",
+        "format-source-muted": "",
         "on-click": "pavucontrol -t 4",
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
         "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+",
@@ -254,13 +240,13 @@
         "format": "{icon}",
         "format-icons": {
             "none": "󰂚",
-            "notification": "<span color='yellow'>󱅫</span>",
-            "inhibited-notification": "<span color='yellow'>󰅸</span>",
+            "notification": "󱅫",
+            "inhibited-notification": "󰅸",
             "inhibited-none": "󰂜",
-            "dnd-none": "<span color='#777'>󰂚</span>",
-            "dnd-notification": "<span color='#777'>󱅫</span>",
-            "dnd-inhibited-notification": "<span color='#777'>󰅸</span>",
-            "dnd-inhibited-none": "<span color='#777'>󰂜</span>"
+            "dnd-none": "󰂚",
+            "dnd-notification": "󱅫",
+            "dnd-inhibited-notification": "󰅸",
+            "dnd-inhibited-none": "󰂜"
         },
         "return-type": "json",
         "exec-if": "which swaync-client",
@@ -269,8 +255,16 @@
         "on-click": "swaync-client -t -sw",
         "escape": true
     },
-    "custom/todo": {
-        "format": "",
-        "on-click": "cat ~/notes/todo.md | rofi -dmenu"
+    "custom/little-reminder": {
+        "format": "{icon}<big><b>{text}</b></big>",
+        "format-icons": { "inactive": "󱞏 ", "active": "󱞏  " },
+        "exec": "~/.config/waybar/little_reminder.sh show",
+        // "interval": "once",
+        "escape": true,
+        "return-type": "json",
+        "signal": 10,
+        "on-click": "~/.config/waybar/little_reminder.sh click",
+        "on-click-right": "~/.config/waybar/little_reminder.sh reset",
+        "tooltip": false
     }
 }

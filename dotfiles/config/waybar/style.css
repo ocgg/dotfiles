@@ -5,6 +5,9 @@
 @define-color lightblue-faded rgba(159, 246, 252, 0.5);
 @define-color blue #0069d4;
 @define-color urgent #fcdd2a;
+@define-color critical orangered;
+
+/* GENERAL */
 
 * {
   /* otf-font-awesome or nerd font is required for icons */
@@ -13,25 +16,16 @@
   transition: none;
 }
 
-tooltip {
-  background-color: @bg-dark;
-  border: 1px solid @bg-gray;
-}
-
-tooltip label {
-  font-size: 16px;
-}
-
 window#waybar {
   background-color: @bg-dark;
   border-bottom: 3px solid @bg-gray;
   color: white;
 }
-
 window#waybar.hidden {
   opacity: 0.2;
 }
 
+/* seems to affect only workspaces buttons */
 button {
   /* Use box-shadow instead of border so the text isn't offset */
   box-shadow: inset 0 -3px transparent;
@@ -45,10 +39,21 @@ button {
   color: white;
 }
 
+/* TOOLTIPS */
+
+tooltip {
+  background-color: @bg-dark;
+  border: 1px solid @bg-gray;
+}
+tooltip label {
+  font-size: 16px;
+}
+
+/* WORKSPACES */
+
 #workspaces {
   padding-left: 0;
 }
-
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
   box-shadow: inherit;
@@ -59,31 +64,65 @@ button {
 #workspaces button.special:hover {
   box-shadow: inset 0 -3px @lightblue;
 }
-
 #workspaces button.active {
   color: white;
   box-shadow: inset 0 -3px white;
 }
-
 #workspaces.other button {
   color: @lightblue-faded;
 }
-
 #workspaces.other button.active {
   color: @lightblue;
   box-shadow: inset 0 -3px @lightblue;
 }
-
 #workspaces button.special.empty {
   opacity: 0;
 }
 #workspaces button.special.empty.active {
   opacity: 1;
 }
-
 #workspaces button:hover,
 .module:hover {
   box-shadow: inset 0 -3px white;
+}
+
+/* CUSTOM/NOTIFICATION */
+
+#custom-notification.notification,
+#custom-notification.inhibited-notification {
+  color: @urgent;
+}
+#custom-notification.dnd-none,
+#custom-notification.dnd-notification,
+#custom-notification.dnd-inhibited-notification,
+#custom-notification.dnd-inhibited-none {
+  color: @icon-gray;
+}
+
+/* CLOCK */
+
+#clock {
+  font-weight: bold;
+}
+
+/* CUSTOM/LITTLE-REMINDER */
+
+@keyframes blink {
+  99% { opacity: 1; }
+  99.25% { opacity: 0; }
+  99.50% { opacity: 1; }
+  99.75% { opacity: 0; }
+  100% { opacity: 1; }
+}
+#custom-little-reminder {
+  padding: 0 10px;
+  font-family: JetBrainsMonoNL Nerd Font;
+}
+#custom-little-reminder.active {
+  animation: blink 120s linear infinite;
+  box-shadow: inset 0 -3px @urgent;
+  /* background-color: @bg-gray; */
+  color: @urgent;
 }
 
 /* Nothing on hover for these */
@@ -96,17 +135,17 @@ button {
 #temperature.critical,
 #battery.critical:not(.charging) {
   background-color: black;
-  color: orangered;
-  box-shadow: inset 0 -3px orangered;
+  color: @critical;
+  box-shadow: inset 0 -3px @critical;
 }
 #workspaces button,
 #network.disconnected,
-#wireplumber.muted,
+#wireplumber.sink-muted,
+#pulseaudio.source-muted,
 #bluetooth.disabled {
   color: @icon-gray;
 }
 
-#idle_inhibitor.activated,
 #workspaces button.urgent {
   color: @urgent;
   box-shadow: inset 0 -3px @urgent;
@@ -115,22 +154,7 @@ button {
 #privacy {
   padding: 0;
 }
-
 #privacy-item {
   padding: 0 5px;
   background-color: @blue;
 }
-
-#clock {
-  font-weight: bold;
-}
-
-/* If workspaces is the leftmost module, omit left margin */
-/* .modules-left>widget:first-child>#workspaces { */
-/*   margin-left: 0; */
-/* } */
-
-/* If workspaces is the rightmost module, omit right margin */
-/* .modules-right > widget:last-child > #workspaces { */
-/*     margin-right: 0; */
-/* } */
