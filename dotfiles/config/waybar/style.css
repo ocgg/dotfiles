@@ -61,8 +61,16 @@ tooltip label {
   background: inherit;
   border: inherit;
 }
+#workspaces button.special {
+  color:darkgoldenrod;
+}
+#workspaces button.special.active {
+  color: goldenrod;
+  box-shadow: inset 0 -3px goldenrod;
+}
 #workspaces button.special:hover {
-  box-shadow: inset 0 -3px @lightblue;
+  color: goldenrod;
+  box-shadow: inset 0 -3px goldenrod;
 }
 #workspaces button.active {
   color: white;

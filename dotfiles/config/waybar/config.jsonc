@@ -10,7 +10,8 @@
         "privacy",
         "hyprland/workspaces",
         "hyprland/workspaces#common",
-        "hyprland/workspaces#other"
+        "hyprland/workspaces#other",
+        "hyprland/workspaces#special"
     ],
     "modules-center": [
         "custom/notification",
@@ -71,16 +72,22 @@
     },
     "hyprland/workspaces#other": {
         "disable-scroll": true,
-        "show-special": true,
         "sort-by": "name",
         "format": "<big>{icon}</big>",
-        "ignore-workspaces": ["(?!Z|special:).*"],
+        "ignore-workspaces": ["(?!Z).*"],
         "format-icons": {
             "Z1network": "",
             "Z2mail": "",
-            "Z3music": "",
-            "ZZmagic": ""
+            "Z3music": ""
         }
+    },
+    "hyprland/workspaces#special": {
+        "disable-scroll": true,
+        "show-special": true,
+        "sort-by": "name",
+        "format": "<big>{icon}</big>",
+        "ignore-workspaces": ["(?!special:).*"],
+        "format-icons": { "ZZmagic": "" }
     },
     "clock": {
         "timezone": "Europe/Paris",
