@@ -265,13 +265,16 @@
     "custom/little-reminder": {
         "format": "{icon}<big><b>{text}</b></big>",
         "format-icons": { "inactive": "󱞏 ", "active": "󱞏  " },
-        "exec": "~/.config/waybar/little_reminder.sh show",
-        // "interval": "once",
-        "escape": true,
+        // "exec": "~/.config/waybar/little-reminder/little_reminder.sh show",
+        "exec": "~/.config/waybar/little-reminder/little-reminder.sh",
+        "exec-on-event": false,
+        // "escape": true,
         "return-type": "json",
-        "signal": 10,
-        "on-click": "~/.config/waybar/little_reminder.sh click",
-        "on-click-right": "~/.config/waybar/little_reminder.sh reset",
+        // "signal": 10,
+        // "on-click": "~/.config/waybar/little-reminder/little_reminder.sh click",
+        "on-click": "pkill -f little-reminder.sh -SIGRTMIN+5",
+        "on-click-middle": "pkill -f little-reminder.sh -SIGRTMIN+6",
+        "on-click-right": "pkill -f little-reminder.sh -SIGRTMIN+7",
         "tooltip": false
     }
 }
