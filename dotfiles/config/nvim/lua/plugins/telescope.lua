@@ -11,7 +11,7 @@ return {
 			pickers = {
 				find_files = {
 					hidden = true, -- show hidden files
-					no_ignore = true, -- show gitignored files
+					no_ignore = false, -- show gitignored files
 					-- hide those
 					file_ignore_patterns = {
 						"^.git/",
