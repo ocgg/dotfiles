@@ -41,7 +41,7 @@ vim.wo.signcolumn = "yes"
 o.timeoutlen = 300
 -- o.completeopt = 'menuone,noselect'
 -- vertical line
-o.colorcolumn = "80"
+o.colorcolumn = "81,101"
 o.scrolloff = 5
 o.sidescrolloff = 15
 
