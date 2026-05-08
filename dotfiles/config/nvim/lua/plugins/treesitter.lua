@@ -7,11 +7,9 @@ return {
 	},
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			highlight = {
-				enable = true,
-			},
-			indent = { enable = true },
-			autotag = { enable = true },
+			-- highlight = { enable = true, },
+			-- indent = { enable = true },
+			-- autotag = { enable = true },
 			ensure_installed = {
 				"bash",
 				"c",
@@ -33,7 +31,6 @@ return {
 				"sql",
 				"typescript",
 				"tsx",
-				"vim",
 				"vim",
 				"yaml",
 			},
