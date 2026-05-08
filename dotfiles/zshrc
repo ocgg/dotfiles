@@ -78,9 +78,12 @@ fif() {
 # Change LS_COLORS to get rid of OMZ's annoying green background in ls & completion
 # export LS_COLORS='fi=00:mi=00:mh=00:ln=01;36:or=01;31:di=01;34:ow=04;01;34:st=34:tw=04;34:'
 # LS_COLORS+='pi=01;33:so=01;33:do=01;33:bd=01;33:cd=01;33:su=01;35:sg=01;35:ca=01;35:ex=01;32'
-LS_COLORS="ow=04;01;34"
+# LS_COLORS="ow=04;01;34"
 # Use ls colors in completion lists.
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+
+# eza: all white except file and dir names
+export EZA_COLORS="reset:di=1;34:fi=37:ex=32:ln=36:pi=33:so=35:bd=33:cd=33:or=31:mi=31:ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0:sn=0:sb=0:da=0:uu=0:gu=0"
 
 # export NVM_DIR="$HOME/.config/nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

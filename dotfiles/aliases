@@ -6,11 +6,14 @@ alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/m
 alias serve='ruby -run -e httpd . -p 8000' # Or python -m SimpleHTTPServer :)
 
 # OCGG
-alias tr='tree -a -I .git' # all files, ignore .git
-alias trd='tree -d -I .git'
-alias tra='tree -augD --metafirst -I .git' # more file infos
-alias tr2="tree -L 2 -a -I .git" # 2 levels deep
-alias tr3="tree -L 3 -a -I .git" # 3 levels deep
+alias ls='ls --color=tty --group-directories-first'
+alias eza='eza -F --hyperlink --icons --time-style=relative --group-directories-first'
+# alias tr='tree -a -I .git' # all files, ignore .git
+alias tr='eza -T'
+alias trd='tr -D'
+alias tra='tr -la' # more file infos
+alias tr2="tr -L2" # 2 levels deep
+alias tr3="tr -L3" # 3 levels deep
 
 alias notes="nvim -c 'cd ~/notes'"
 alias todo="cat ~/notes/todo.md"

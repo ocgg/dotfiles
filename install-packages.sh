@@ -27,13 +27,13 @@ if [[ $dist =~ "Arch Linux" ]]; then
 
     echo "  # Installing common apps"
     sudo pacman -S --needed\
-        firefox\
         gparted btrfs-progs ntfs-3g\
         libreoffice-still\
         neovim\
         power-profiles-daemon\
         thunderbird\
-        vlc
+        vlc\
+        zen-browser
 
     # echo "installing stuff for bluetooth support..."
     # sudo pacman -S bluez bluez-utils blueman
