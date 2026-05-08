@@ -1,0 +1,28 @@
+# GENERAL ######################################################################
+
+theme = Catppuccin Mocha
+shell-integration-features = no-cursor
+cursor-style-blink = false
+
+font-family = JetBrainsMonoNL Nerd Font
+font-size = 13
+
+unfocused-split-opacity = 0.9
+
+
+# KEY BINDINGS #################################################################
+
+keybind = ctrl+shift+w=unbind
+keybind = ctrl+shift+w>ctrl+shift+w=goto_split:next
+keybind = ctrl+shift+w>h=goto_split:left
+keybind = ctrl+shift+w>l=goto_split:right
+keybind = ctrl+shift+w>k=goto_split:up
+keybind = ctrl+shift+w>j=goto_split:down
+
+
+# PERFORMANCE ##################################################################
+
+# Run once: systemctl enable --user app-com.mitchellh.ghostty.service to allow
+# fast new window opening. Then:
+quit-after-last-window-closed = true
+quit-after-last-window-closed-delay = 5m
