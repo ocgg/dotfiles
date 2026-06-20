@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "relative_line_numbers": "enabled",
   "agent_servers": {
     "opencode": {
       "favorite_config_option_values": {
@@ -62,7 +63,7 @@
     "dock": "left"
   },
   "minimap": {
-    "show": "auto"
+    "show": "never"
   },
   "git": {
     "inline_blame": {
