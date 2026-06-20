@@ -46,6 +46,7 @@
     "dock": "left"
   },
   "agent": {
+    "show_turn_stats": true,
     "default_profile": "write",
     "default_model": {
       "provider": "openai",
