@@ -7,6 +7,31 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "completions": {
+    "words": "enabled",
+    "words_min_length": 3,
+  },
+  "lsp": {
+    "solargraph": {
+      "initialization_options": {
+        "diagnostics": true,
+        "formatting": true
+      }
+    }
+  },
+  "languages": {
+    "Slim": {
+      "language_servers": ["!ruby-lsp", "tailwindcss-language-server", "..."],
+      "tab_size": 2
+    },
+  },
+  "context_servers": {
+    "mcp-server-godot": {
+      "enabled": true,
+      "remote": false,
+      "settings": {}
+    }
+  },
   "show_wrap_guides": true,
   "which_key": {
     "enabled": true
@@ -17,7 +42,19 @@
   },
   "relative_line_numbers": "disabled",
   "agent_servers": {
+    "mistral-vibe": {
+      "default_config_options": {
+        "thinking": "max",
+        "mode": "plan"
+      },
+      "type": "registry"
+    },
     "opencode": {
+      "default_config_options": {
+        "effort": "high",
+        "mode": "build",
+        "model": "openai/gpt-5.4-mini"
+      },
       "favorite_config_option_values": {
         "mode": [
           "plan"
@@ -26,6 +63,11 @@
       "type": "registry"
     },
     "claude-acp": {
+      "default_config_options": {
+        "effort": "default",
+        "mode": "default",
+        "model": "default"
+      },
       "type": "registry"
     }
   },
@@ -55,13 +97,48 @@
     "dock": "left"
   },
   "agent": {
+    "profiles": {
+      "ask": {
+        "name": "Ask",
+        "tools": {
+          "create_thread": true,
+          "diagnostics": true,
+          "fetch": true,
+          "list_agents_and_models": true,
+          "list_directory": true,
+          "find_path": true,
+          "find_references": true,
+          "get_code_actions": true,
+          "go_to_definition": true,
+          "read_file": true,
+          "grep": true,
+          "skill": true,
+          "spawn_agent": true,
+          "search_web": true
+        },
+        "enable_all_context_servers": false,
+        "context_servers": {
+          "mcp-server-godot": {
+            "tools": {
+              "stop_project": false,
+              "run_project": false,
+              "list_projects": true,
+              "get_uid": true,
+              "get_project_info": true,
+              "get_godot_version": true,
+              "get_debug_output": true
+            }
+          }
+        }
+      }
+    },
     "show_turn_stats": true,
-    "default_profile": "write",
+    "default_profile": "ask",
     "default_model": {
-      "provider": "openai",
-      "model": "gpt-5.3-codex",
-      "enable_thinking": true,
-      "effort": "low"
+      "effort": "high",
+      "provider": "anthropic",
+      "model": "claude-sonnet-5",
+      "enable_thinking": true
     },
     "dock": "right",
     "favorite_models": [],
@@ -83,7 +160,7 @@
   },
   "format_on_save": "off",
   "inlay_hints": {
-    "enabled": true
+
   },
   "telemetry": {
     "diagnostics": false,
