@@ -7,6 +7,9 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "context_servers": {
+    
+  },
   "show_wrap_guides": true,
   "which_key": {
     "enabled": true
@@ -17,6 +20,9 @@
   },
   "relative_line_numbers": "disabled",
   "agent_servers": {
+    "mistral-vibe": {
+      "type": "registry"
+    },
     "opencode": {
       "favorite_config_option_values": {
         "mode": [
@@ -58,10 +64,9 @@
     "show_turn_stats": true,
     "default_profile": "write",
     "default_model": {
-      "provider": "openai",
-      "model": "gpt-5.3-codex",
-      "enable_thinking": true,
-      "effort": "low"
+      "provider": "mistral",
+      "model": "mistral-medium-latest",
+      "enable_thinking": true
     },
     "dock": "right",
     "favorite_models": [],
@@ -83,7 +88,7 @@
   },
   "format_on_save": "off",
   "inlay_hints": {
-    "enabled": true
+    "enabled": false
   },
   "telemetry": {
     "diagnostics": false,
